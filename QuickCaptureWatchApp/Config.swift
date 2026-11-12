@@ -10,7 +10,7 @@ struct Config: Sendable {
     // MARK: - API Defaults
 
     /// Base URL of the Quick Capture backend (without trailing `/api/capture`).
-    static let defaultAPIBaseURL = "https://<your-service>.run.app"
+    static let defaultAPIBaseURL = "https://gtd.bakulin.de"
 
     /// Bearer token prefixed with `iwf_cap_`.
     static let defaultAPIToken = "iwf_cap_<token>"
@@ -28,7 +28,7 @@ struct Config: Sendable {
 
     // MARK: - Deep Linking
 
-    static let deepLinkScheme = "quickcapture"
+    static let deepLinkScheme = "iwfquickcapture"
     static let deepLinkRecordHost = "record"
 
     /// Deep link URL used by the watch face complication to launch straight into recording.
@@ -44,8 +44,8 @@ struct Config: Sendable {
     private static let apiBaseURLDefaultsKey = "com.iwf.quickcapture.apiBaseURL"
     private static let apiTokenDefaultsKey = "com.iwf.quickcapture.apiToken"
 
-    private static let apiBaseURLEnvKey = "QUICK_CAPTURE_API_BASE_URL"
-    private static let apiTokenEnvKey = "QUICK_CAPTURE_API_TOKEN"
+    private static let apiBaseURLEnvKey = "IWF_CAPTURE_API_BASE_URL"
+    private static let apiTokenEnvKey = "IWF_CAPTURE_API_TOKEN"
 
     // MARK: - Resolved Settings
 

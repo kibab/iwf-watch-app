@@ -64,6 +64,13 @@
             ReferencedContainer = "container:QuickCapture.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "IWF_CAPTURE_API_TOKEN"
+            value = "iwf_cap_9cb9f6d3ad92ad280c077cf72fb88a3b3f41f239aba5d568afba8cdc5da3b32c"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -90,4 +97,3 @@
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
-
