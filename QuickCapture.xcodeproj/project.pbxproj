@@ -24,7 +24,6 @@
 		AA000001000000000000000F /* PairingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000011 /* PairingView.swift */; };
 		AA0000010000000000000010 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000012 /* SettingsView.swift */; };
 		AA0000010000000000000011 /* QRCodeGenerator in Frameworks */ = {isa = PBXBuildFile; productRef = 990000010000000000000001 /* QRCodeGenerator */; };
-		AA0000010000000000000012 /* QuickCaptureWatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BB0000020000000000000001 /* QuickCaptureWatchApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,13 +33,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = DD0000010000000000000002;
 			remoteInfo = QuickCaptureWidgetExtension;
-		};
-		CC0000010000000000000002 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EE0000010000000000000001 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DD0000010000000000000001;
-			remoteInfo = QuickCaptureWatchApp;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -54,17 +46,6 @@
 				AA000001000000000000000A /* QuickCaptureWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FF0000010000000000000002 /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-				AA0000010000000000000012 /* QuickCaptureWatchApp.app in Embed Watch Content */,
-			);
-			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -90,7 +71,6 @@
 		BB0000010000000000000012 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BB0000020000000000000001 /* QuickCaptureWatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickCaptureWatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB0000020000000000000002 /* QuickCaptureWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QuickCaptureWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB0000020000000000000003 /* QuickCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +138,6 @@
 			children = (
 				BB0000020000000000000001 /* QuickCaptureWatchApp.app */,
 				BB0000020000000000000002 /* QuickCaptureWidgetExtension.appex */,
-				BB0000020000000000000003 /* QuickCapture.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -205,24 +184,6 @@
 			productReference = BB0000020000000000000002 /* QuickCaptureWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		DD0000010000000000000003 /* QuickCapture */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 330000010000000000000004 /* Build configuration list for PBXNativeTarget "QuickCapture" */;
-			buildPhases = (
-				550000010000000000000003 /* Resources */,
-				550000010000000000000004 /* Generate Stub Icons */,
-				FF0000010000000000000002 /* Embed Watch Content */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				660000010000000000000002 /* PBXTargetDependency */,
-			);
-			name = QuickCapture;
-			productName = QuickCapture;
-			productReference = BB0000020000000000000003 /* QuickCapture.app */;
-			productType = "com.apple.product-type.application.watchapp2-container";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -238,9 +199,6 @@
 					};
 					DD0000010000000000000002 = {
 						CreatedOnToolsVersion = 16.0;
-					};
-					DD0000010000000000000003 = {
-						CreatedOnToolsVersion = 26.6;
 					};
 				};
 			};
@@ -260,7 +218,6 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DD0000010000000000000003 /* QuickCapture */,
 				DD0000010000000000000001 /* QuickCaptureWatchApp */,
 				DD0000010000000000000002 /* QuickCaptureWidgetExtension */,
 			);
@@ -284,39 +241,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		550000010000000000000003 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		550000010000000000000004 /* Generate Stub Icons */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(PLATFORM_DIR)/Library/Application Support/MessagesApplicationStub/MessagesApplicationStub.xcassets/MessagesApplicationStub.appiconset/1024.png",
-			);
-			name = "Generate Stub Icons";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/MessagesApplicationStub60x60@2x.png",
-				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/MessagesApplicationStub76x76@2x~ipad.png",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "STUB_ICON=\"$PLATFORM_DIR/Library/Application Support/MessagesApplicationStub/MessagesApplicationStub.xcassets/MessagesApplicationStub.appiconset/1024.png\"\nDEST=\"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nmkdir -p \"$DEST\"\n/usr/bin/sips -s format png -z 120 120 \"$STUB_ICON\" --out \"$DEST/MessagesApplicationStub60x60@2x.png\" >/dev/null\n/usr/bin/sips -s format png -z 152 152 \"$STUB_ICON\" --out \"$DEST/MessagesApplicationStub76x76@2x~ipad.png\" >/dev/null\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		440000010000000000000001 /* Sources */ = {
@@ -353,11 +278,6 @@
 			isa = PBXTargetDependency;
 			target = DD0000010000000000000002 /* QuickCaptureWidgetExtension */;
 			targetProxy = CC0000010000000000000001 /* PBXContainerItemProxy */;
-		};
-		660000010000000000000002 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DD0000010000000000000001 /* QuickCaptureWatchApp */;
-			targetProxy = CC0000010000000000000002 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -513,7 +433,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -547,7 +467,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -613,42 +533,6 @@
 			};
 			name = Release;
 		};
-		770000010000000000000007 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S683DYH2T8;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "QuickCaptureWatchApp/WatchContainer-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Quick Capture";
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iwf.quickcapture;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
-			};
-			name = Debug;
-		};
-		770000010000000000000008 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S683DYH2T8;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "QuickCaptureWatchApp/WatchContainer-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Quick Capture";
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iwf.quickcapture;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -675,15 +559,6 @@
 			buildConfigurations = (
 				770000010000000000000005 /* Debug */,
 				770000010000000000000006 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		330000010000000000000004 /* Build configuration list for PBXNativeTarget "QuickCapture" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				770000010000000000000007 /* Debug */,
-				770000010000000000000008 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
