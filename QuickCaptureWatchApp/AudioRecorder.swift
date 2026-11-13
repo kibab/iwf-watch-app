@@ -80,7 +80,7 @@ final class AudioRecorder: NSObject {
 
         let session = AVAudioSession.sharedInstance()
         do {
-            try session.setCategory(.record, mode: .spokenAudio)
+            try session.setCategory(.record, mode: .default)
             try session.setActive(true)
         } catch {
             Self.logger.error("Failed to configure AVAudioSession: \(error.localizedDescription, privacy: .public)")
