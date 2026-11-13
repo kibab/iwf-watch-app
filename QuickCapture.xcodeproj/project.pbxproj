@@ -210,6 +210,7 @@
 			buildConfigurationList = 330000010000000000000004 /* Build configuration list for PBXNativeTarget "QuickCapture" */;
 			buildPhases = (
 				550000010000000000000003 /* Resources */,
+				550000010000000000000004 /* Generate Stub Icons */,
 				FF0000010000000000000002 /* Embed Watch Content */,
 			);
 			buildRules = (
@@ -291,6 +292,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		550000010000000000000004 /* Generate Stub Icons */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(PLATFORM_DIR)/Library/Application Support/MessagesApplicationStub/MessagesApplicationStub.xcassets/MessagesApplicationStub.appiconset/1024.png",
+			);
+			name = "Generate Stub Icons";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/MessagesApplicationStub60x60@2x.png",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/MessagesApplicationStub76x76@2x~ipad.png",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "STUB_ICON=\"$PLATFORM_DIR/Library/Application Support/MessagesApplicationStub/MessagesApplicationStub.xcassets/MessagesApplicationStub.appiconset/1024.png\"\nDEST=\"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nmkdir -p \"$DEST\"\n/usr/bin/sips -s format png -z 120 120 \"$STUB_ICON\" --out \"$DEST/MessagesApplicationStub60x60@2x.png\" >/dev/null\n/usr/bin/sips -s format png -z 152 152 \"$STUB_ICON\" --out \"$DEST/MessagesApplicationStub76x76@2x~ipad.png\" >/dev/null\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		440000010000000000000001 /* Sources */ = {
@@ -590,10 +616,12 @@
 		770000010000000000000007 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S683DYH2T8;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "QuickCaptureWatchApp/WatchContainer-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Quick Capture";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.iwf.quickcapture;
@@ -606,10 +634,12 @@
 		770000010000000000000008 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S683DYH2T8;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "QuickCaptureWatchApp/WatchContainer-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Quick Capture";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.iwf.quickcapture;
