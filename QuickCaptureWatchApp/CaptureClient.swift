@@ -13,7 +13,7 @@ enum CaptureError: LocalizedError, Sendable, Equatable {
         case .invalidConfiguration(let message):
             return message
         case .unauthorized:
-            return "Unauthorized"
+            return "Watch unpaired"
         case .serverError(let statusCode):
             return "Server error (\(statusCode))"
         case .networkError(let message):
@@ -35,9 +35,14 @@ struct CaptureClient: Sendable {
     )
 
     private let session: URLSession
+    private let tokenStore: KeychainTokenStore
 
-    init(session: URLSession = .shared) {
+    init(
+        session: URLSession = .shared,
+        tokenStore: KeychainTokenStore = KeychainTokenStore()
+    ) {
         self.session = session
+        self.tokenStore = tokenStore
     }
 
     /// Streams `fileURL` via `URLSession.upload(for:fromFile:)` to keep RAM usage minimal on Series 6/7.
@@ -96,38 +101,16 @@ struct CaptureClient: Sendable {
     // MARK: - Validation Helpers
 
     private func resolvedEndpointURL() throws -> URL {
-        let rawBaseURL = Config.apiBaseURL
-        guard !rawBaseURL.contains("<your-service>") else {
-            throw CaptureError.invalidConfiguration("Set API URL")
+        do {
+            return try Config.resolvedEndpointURL(path: Config.captureEndpointPath)
+        } catch {
+            throw CaptureError.invalidConfiguration(error.localizedDescription)
         }
-
-        guard var components = URLComponents(string: rawBaseURL),
-              components.scheme?.lowercased() == "https",
-              let host = components.host,
-              !host.isEmpty else {
-            throw CaptureError.invalidConfiguration("Invalid API URL")
-        }
-
-        let trimmedPath = components.path.hasSuffix("/")
-            ? String(components.path.dropLast())
-            : components.path
-
-        if trimmedPath.hasSuffix(Config.captureEndpointPath) {
-            components.path = trimmedPath
-        } else {
-            components.path = trimmedPath + Config.captureEndpointPath
-        }
-
-        guard let url = components.url else {
-            throw CaptureError.invalidConfiguration("Invalid API URL")
-        }
-        return url
     }
 
     private func resolvedToken() throws -> String {
-        let token = Config.apiToken
-        guard !token.isEmpty, !token.contains("<token>") else {
-            throw CaptureError.invalidConfiguration("Set API token")
+        guard let token = tokenStore.readToken() else {
+            throw CaptureError.unauthorized
         }
         return token
     }
@@ -147,4 +130,3 @@ struct CaptureClient: Sendable {
         }
     }
 }
-

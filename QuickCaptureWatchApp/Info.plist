@@ -11,7 +11,7 @@
 			<string>com.iwf.quickcapture</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>quickcapture</string>
+				<string>iwfquickcapture</string>
 			</array>
 		</dict>
 	</array>

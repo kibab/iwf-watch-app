@@ -23,7 +23,7 @@ enum AudioRecorderError: LocalizedError, Sendable, Equatable {
     }
 }
 
-/// Manages `AVAudioSession` and `AVAudioRecorder` for low-memory voice capture on Apple Watch.
+/// Manages `AVAudioSession`, `AVAudioRecorder`, and the persistent `.m4a` upload queue on Apple Watch.
 @MainActor
 final class AudioRecorder: NSObject {
     /// Invoked if watchOS interrupts or halts an active recording unexpectedly.
@@ -34,6 +34,7 @@ final class AudioRecorder: NSObject {
         category: "AudioRecorder"
     )
 
+    private static let queueDirectoryName = "PendingCaptures"
     private static let filePrefix = "memo-"
     private static let fileExtension = "m4a"
 
@@ -46,13 +47,15 @@ final class AudioRecorder: NSObject {
         AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
     ]
 
+    private let queueDirectoryURL: URL
     private var recorder: AVAudioRecorder?
     private var currentFileURL: URL?
     private nonisolated(unsafe) var interruptionObserver: NSObjectProtocol?
 
     override init() {
+        self.queueDirectoryURL = Self.resolveQueueDirectoryURL()
         super.init()
-        cleanupOrphanedRecordings()
+        cleanupEmptyOrphanedFiles()
         registerForInterruptions()
     }
 
@@ -67,11 +70,13 @@ final class AudioRecorder: NSObject {
         await AVAudioApplication.requestRecordPermission()
     }
 
-    /// Starts recording to a unique `.m4a` file in `FileManager.default.temporaryDirectory`.
+    /// Starts recording to a unique `.m4a` file in the persistent local upload queue directory.
     func startRecording() throws {
         if recorder != nil {
             _ = stopRecording()
         }
+
+        ensureQueueDirectoryExists()
 
         let session = AVAudioSession.sharedInstance()
         do {
@@ -82,8 +87,10 @@ final class AudioRecorder: NSObject {
             throw AudioRecorderError.sessionConfigurationFailed(error.localizedDescription)
         }
 
-        let fileURL = FileManager.default.temporaryDirectory
-            .appendingPathComponent("\(Self.filePrefix)\(UUID().uuidString)")
+        let timestampMillis = UInt64(max(0, Date().timeIntervalSince1970 * 1000))
+        let filename = String(format: "%@%013llu-%@", Self.filePrefix, timestampMillis, UUID().uuidString)
+        let fileURL = queueDirectoryURL
+            .appendingPathComponent(filename)
             .appendingPathExtension(Self.fileExtension)
 
         let audioRecorder: AVAudioRecorder
@@ -138,7 +145,35 @@ final class AudioRecorder: NSObject {
         return fileURL
     }
 
-    /// Deletes a temporary audio file from disk after upload succeeds or fails.
+    /// Returns all pending non-empty `.m4a` files in the upload queue sorted oldest-first.
+    func pendingRecordings() -> [URL] {
+        guard let contents = try? FileManager.default.contentsOfDirectory(
+            at: queueDirectoryURL,
+            includingPropertiesForKeys: [.creationDateKey, .fileSizeKey],
+            options: [.skipsHiddenFiles]
+        ) else {
+            return []
+        }
+
+        let activeURL = currentFileURL?.standardizedFileURL
+        return contents
+            .filter { url in
+                url.standardizedFileURL != activeURL
+                    && url.lastPathComponent.hasPrefix(Self.filePrefix)
+                    && url.pathExtension.lowercased() == Self.fileExtension
+                    && hasNonZeroFileSize(at: url)
+            }
+            .sorted { lhs, rhs in
+                lhs.lastPathComponent < rhs.lastPathComponent
+            }
+    }
+
+    /// Number of `.m4a` recordings currently waiting in the local upload queue.
+    func pendingRecordingCount() -> Int {
+        pendingRecordings().count
+    }
+
+    /// Deletes a queued audio file from disk (call only after confirmed upload success or if invalid/empty).
     func deleteRecording(at url: URL) {
         guard FileManager.default.fileExists(atPath: url.path) else {
             return
@@ -146,11 +181,28 @@ final class AudioRecorder: NSObject {
         do {
             try FileManager.default.removeItem(at: url)
         } catch {
-            Self.logger.warning("Failed to delete temporary audio file: \(error.localizedDescription, privacy: .public)")
+            Self.logger.warning("Failed to delete audio file: \(error.localizedDescription, privacy: .public)")
         }
     }
 
     // MARK: - Private Helpers
+
+    private static func resolveQueueDirectoryURL() -> URL {
+        if let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
+            let queueURL = appSupport.appendingPathComponent(queueDirectoryName, isDirectory: true)
+            try? FileManager.default.createDirectory(at: queueURL, withIntermediateDirectories: true)
+            return queueURL
+        }
+        let fallback = FileManager.default.temporaryDirectory.appendingPathComponent(queueDirectoryName, isDirectory: true)
+        try? FileManager.default.createDirectory(at: fallback, withIntermediateDirectories: true)
+        return fallback
+    }
+
+    private func ensureQueueDirectoryExists() {
+        if !FileManager.default.fileExists(atPath: queueDirectoryURL.path) {
+            try? FileManager.default.createDirectory(at: queueDirectoryURL, withIntermediateDirectories: true)
+        }
+    }
 
     private func deactivateAudioSession() {
         do {
@@ -169,17 +221,19 @@ final class AudioRecorder: NSObject {
         return fileSize > 0
     }
 
-    private func cleanupOrphanedRecordings() {
-        let tempDir = FileManager.default.temporaryDirectory
+    /// Removes only zero-byte leftovers on startup; preserves valid `.m4a` recordings in the upload queue.
+    private func cleanupEmptyOrphanedFiles() {
         guard let contents = try? FileManager.default.contentsOfDirectory(
-            at: tempDir,
-            includingPropertiesForKeys: nil
+            at: queueDirectoryURL,
+            includingPropertiesForKeys: nil,
+            options: [.skipsHiddenFiles]
         ) else {
             return
         }
 
         for url in contents where url.lastPathComponent.hasPrefix(Self.filePrefix)
-            && url.pathExtension.lowercased() == Self.fileExtension {
+            && url.pathExtension.lowercased() == Self.fileExtension
+            && !hasNonZeroFileSize(at: url) {
             try? FileManager.default.removeItem(at: url)
         }
     }
@@ -226,4 +280,3 @@ extension AudioRecorder: AVAudioRecorderDelegate {
         }
     }
 }
-

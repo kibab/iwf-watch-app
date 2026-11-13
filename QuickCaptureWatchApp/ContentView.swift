@@ -3,9 +3,11 @@ import SwiftUI
 /// Primary watch-first capture interface dynamically scaled for Series 6 (40/44mm) and Series 7 (41/45mm).
 struct ContentView: View {
     let viewModel: RecordingViewModel
+    let pairingViewModel: PairingViewModel
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var isPulsing = false
+    @State private var isShowingSettings = false
 
     var body: some View {
         GeometryReader { geometry in
@@ -29,6 +31,26 @@ struct ContentView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(.horizontal, geometry.size.width * 0.05)
+        }
+        .overlay(alignment: .topTrailing) {
+            if !isRecording && !isUploading {
+                Button {
+                    isShowingSettings = true
+                } label: {
+                    Image(systemName: "gearshape.fill")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                        .padding(6)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Settings")
+            }
+        }
+        .sheet(isPresented: $isShowingSettings) {
+            SettingsView(
+                pairingViewModel: pairingViewModel,
+                pendingQueueCount: viewModel.pendingQueueCount
+            )
         }
         .onChange(of: isRecording) { _, recording in
             if recording && !reduceMotion {
@@ -122,9 +144,17 @@ struct ContentView: View {
         return Group {
             switch viewModel.state {
             case .idle:
-                Text("Tap to Record")
-                    .font(labelFont)
-                    .foregroundStyle(.secondary)
+                if viewModel.pendingQueueCount > 0 {
+                    Text("Tap to Record • \(viewModel.pendingQueueCount) queued")
+                        .font(labelFont)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                } else {
+                    Text("Tap to Record")
+                        .font(labelFont)
+                        .foregroundStyle(.secondary)
+                }
             case .recording(let duration):
                 Text(formattedDuration(duration))
                     .font(labelFont.monospacedDigit())
@@ -239,5 +269,8 @@ struct ContentView: View {
 }
 
 #Preview("Idle") {
-    ContentView(viewModel: RecordingViewModel())
+    ContentView(
+        viewModel: RecordingViewModel(),
+        pairingViewModel: PairingViewModel()
+    )
 }

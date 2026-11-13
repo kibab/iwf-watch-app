@@ -17,6 +17,13 @@
 		AA0000010000000000000008 /* CaptureWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000009 /* CaptureWidget.swift */; };
 		AA0000010000000000000009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000000A /* Assets.xcassets */; };
 		AA000001000000000000000A /* QuickCaptureWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BB0000020000000000000002 /* QuickCaptureWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA000001000000000000000B /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000000D /* KeychainTokenStore.swift */; };
+		AA000001000000000000000C /* PairingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000000E /* PairingService.swift */; };
+		AA000001000000000000000D /* PairingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000000F /* PairingViewModel.swift */; };
+		AA000001000000000000000E /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000010 /* QRCodeView.swift */; };
+		AA000001000000000000000F /* PairingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000011 /* PairingView.swift */; };
+		AA0000010000000000000010 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000012 /* SettingsView.swift */; };
+		AA0000010000000000000011 /* QRCodeGenerator in Frameworks */ = {isa = PBXBuildFile; productRef = 990000010000000000000001 /* QRCodeGenerator */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +63,12 @@
 		BB000001000000000000000A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB000001000000000000000B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB000001000000000000000C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BB000001000000000000000D /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
+		BB000001000000000000000E /* PairingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingService.swift; sourceTree = "<group>"; };
+		BB000001000000000000000F /* PairingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingViewModel.swift; sourceTree = "<group>"; };
+		BB0000010000000000000010 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
+		BB0000010000000000000011 /* PairingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingView.swift; sourceTree = "<group>"; };
+		BB0000010000000000000012 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BB0000020000000000000001 /* QuickCaptureWatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickCaptureWatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB0000020000000000000002 /* QuickCaptureWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QuickCaptureWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -65,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0000010000000000000011 /* QRCodeGenerator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +111,12 @@
 				BB0000010000000000000004 /* CaptureClient.swift */,
 				BB0000010000000000000005 /* RecordingViewModel.swift */,
 				BB0000010000000000000006 /* ContentView.swift */,
+				BB000001000000000000000D /* KeychainTokenStore.swift */,
+				BB000001000000000000000E /* PairingService.swift */,
+				BB000001000000000000000F /* PairingViewModel.swift */,
+				BB0000010000000000000010 /* QRCodeView.swift */,
+				BB0000010000000000000011 /* PairingView.swift */,
+				BB0000010000000000000012 /* SettingsView.swift */,
 				BB0000010000000000000007 /* Assets.xcassets */,
 				BB0000010000000000000008 /* Info.plist */,
 			);
@@ -140,6 +160,9 @@
 				660000010000000000000001 /* PBXTargetDependency */,
 			);
 			name = QuickCaptureWatchApp;
+			packageProductDependencies = (
+				990000010000000000000001 /* QRCodeGenerator */,
+			);
 			productName = QuickCaptureWatchApp;
 			productReference = BB0000020000000000000001 /* QuickCaptureWatchApp.app */;
 			productType = "com.apple.product-type.application";
@@ -188,6 +211,9 @@
 				Base,
 			);
 			mainGroup = 220000010000000000000001;
+			packageReferences = (
+				880000010000000000000001 /* XCRemoteSwiftPackageReference "swift-qrcode-generator" */,
+			);
 			productRefGroup = 220000010000000000000004 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -228,6 +254,12 @@
 				AA0000010000000000000004 /* CaptureClient.swift in Sources */,
 				AA0000010000000000000005 /* RecordingViewModel.swift in Sources */,
 				AA0000010000000000000006 /* ContentView.swift in Sources */,
+				AA000001000000000000000B /* KeychainTokenStore.swift in Sources */,
+				AA000001000000000000000C /* PairingService.swift in Sources */,
+				AA000001000000000000000D /* PairingViewModel.swift in Sources */,
+				AA000001000000000000000E /* QRCodeView.swift in Sources */,
+				AA000001000000000000000F /* PairingView.swift in Sources */,
+				AA0000010000000000000010 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +550,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		880000010000000000000001 /* XCRemoteSwiftPackageReference "swift-qrcode-generator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fwcd/swift-qrcode-generator";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		990000010000000000000001 /* QRCodeGenerator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 880000010000000000000001 /* XCRemoteSwiftPackageReference "swift-qrcode-generator" */;
+			productName = QRCodeGenerator;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EE0000010000000000000001 /* Project object */;
 }

@@ -24,7 +24,7 @@ struct CaptureComplicationView: View {
     @Environment(\.widgetFamily) private var family
     let entry: CaptureEntry
 
-    private static let recordDeepLinkURL = URL(string: "quickcapture://record")!
+    private static let recordDeepLinkURL = URL(string: "iwfquickcapture://record")!
 
     var body: some View {
         Group {
