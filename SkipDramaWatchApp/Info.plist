@@ -8,17 +8,17 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.iwf.quickcapture</string>
+			<string>app.skipdrama</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>iwfquickcapture</string>
+				<string>skipdrama</string>
 			</array>
 		</dict>
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Record voice tasks for quick capture</string>
+	<string>Record voice tasks for SkipDrama</string>
 	<key>WKApplication</key>
 	<true/>
 	<key>WKWatchOnly</key>

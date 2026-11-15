@@ -23,11 +23,11 @@ enum KeychainError: LocalizedError, Sendable, Equatable {
 /// when the Apple Watch screen dims or locks.
 struct KeychainTokenStore: Sendable {
     private static let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier ?? "com.iwf.quickcapture",
+        subsystem: Bundle.main.bundleIdentifier ?? "app.skipdrama",
         category: "KeychainTokenStore"
     )
 
-    private static let defaultService = "com.iwf.quickcapture.watchkitapp.token"
+    private static let defaultService = "app.skipdrama.watchkitapp.token"
     private static let tokenAccount = "capture_token"
     private static let lastCharsAccount = "capture_token_last4"
     private static let deviceNameAccount = "capture_token_name"

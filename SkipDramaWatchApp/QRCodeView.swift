@@ -67,7 +67,7 @@ struct QRCodeView: View {
 }
 
 #Preview {
-    QRCodeView(urlString: "https://gtd.bakulin.de/settings/integrations?pair_watch=482915")
+    QRCodeView(urlString: "https://skipdrama.app/settings/integrations?pair_watch=482915")
         .frame(width: 130, height: 130)
 }
 

@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct QuickCaptureApp: App {
+struct SkipDramaApp: App {
     @Environment(\.scenePhase) private var scenePhase
 
     @State private var pairingViewModel: PairingViewModel

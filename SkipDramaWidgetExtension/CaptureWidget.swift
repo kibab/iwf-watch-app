@@ -24,7 +24,7 @@ struct CaptureComplicationView: View {
     @Environment(\.widgetFamily) private var family
     let entry: CaptureEntry
 
-    private static let recordDeepLinkURL = URL(string: "iwfquickcapture://record")!
+    private static let recordDeepLinkURL = URL(string: "skipdrama://record")!
 
     var body: some View {
         Group {
@@ -58,7 +58,7 @@ struct CaptureWidget: Widget {
         StaticConfiguration(kind: kind, provider: CaptureTimelineProvider()) { entry in
             CaptureComplicationView(entry: entry)
         }
-        .configurationDisplayName("Quick Capture")
+        .configurationDisplayName("SkipDrama")
         .description("Launch directly into voice recording.")
         .supportedFamilies([.accessoryCircular, .accessoryCorner])
     }

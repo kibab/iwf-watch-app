@@ -26,7 +26,7 @@ final class PairingViewModel {
     }
 
     private static let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier ?? "com.iwf.quickcapture",
+        subsystem: Bundle.main.bundleIdentifier ?? "app.skipdrama",
         category: "PairingViewModel"
     )
 

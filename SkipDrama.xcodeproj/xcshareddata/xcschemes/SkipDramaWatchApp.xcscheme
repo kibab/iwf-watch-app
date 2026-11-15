@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DD0000010000000000000001"
-               BuildableName = "QuickCaptureWatchApp.app"
-               BlueprintName = "QuickCaptureWatchApp"
-               ReferencedContainer = "container:QuickCapture.xcodeproj">
+               BuildableName = "SkipDramaWatchApp.app"
+               BlueprintName = "SkipDramaWatchApp"
+               ReferencedContainer = "container:SkipDrama.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -30,9 +30,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DD0000010000000000000003"
-               BuildableName = "QuickCapture.app"
-               BlueprintName = "QuickCapture"
-               ReferencedContainer = "container:QuickCapture.xcodeproj">
+               BuildableName = "SkipDrama.app"
+               BlueprintName = "SkipDrama"
+               ReferencedContainer = "container:SkipDrama.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -60,9 +60,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DD0000010000000000000001"
-            BuildableName = "QuickCaptureWatchApp.app"
-            BlueprintName = "QuickCaptureWatchApp"
-            ReferencedContainer = "container:QuickCapture.xcodeproj">
+            BuildableName = "SkipDramaWatchApp.app"
+            BlueprintName = "SkipDramaWatchApp"
+            ReferencedContainer = "container:SkipDrama.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DD0000010000000000000001"
-            BuildableName = "QuickCaptureWatchApp.app"
-            BlueprintName = "QuickCaptureWatchApp"
-            ReferencedContainer = "container:QuickCapture.xcodeproj">
+            BuildableName = "SkipDramaWatchApp.app"
+            BlueprintName = "SkipDramaWatchApp"
+            ReferencedContainer = "container:SkipDrama.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

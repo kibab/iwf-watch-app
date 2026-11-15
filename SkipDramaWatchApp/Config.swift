@@ -1,16 +1,16 @@
 import Foundation
 
-/// Centralized configuration for Quick Capture on watchOS.
+/// Centralized configuration for SkipDrama on watchOS.
 ///
-/// The backend base URL defaults to `https://gtd.bakulin.de` and can be overridden
+/// The backend base URL defaults to `https://skipdrama.app` and can be overridden
 /// at runtime via Watch Settings (`UserDefaults.standard`) or launch environment variables.
 struct Config: Sendable {
     private init() {}
 
     // MARK: - API Defaults
 
-    /// Single configuration constant for the Quick Capture backend base URL.
-    static let defaultAPIBaseURL = "https://gtd.bakulin.de"
+    /// Single configuration constant for the SkipDrama backend base URL.
+    static let defaultAPIBaseURL = "https://skipdrama.app"
 
     /// Path appended to `apiBaseURL` when uploading captured audio.
     static let captureEndpointPath = "/api/capture"
@@ -31,7 +31,7 @@ struct Config: Sendable {
 
     // MARK: - Deep Linking
 
-    static let deepLinkScheme = "iwfquickcapture"
+    static let deepLinkScheme = "skipdrama"
     static let deepLinkRecordHost = "record"
 
     /// Deep link URL used by the watch face complication to launch straight into recording.
@@ -44,9 +44,9 @@ struct Config: Sendable {
 
     // MARK: - Runtime Storage Keys
 
-    private static let apiBaseURLDefaultsKey = "com.iwf.quickcapture.apiBaseURL"
+    private static let apiBaseURLDefaultsKey = "app.skipdrama.apiBaseURL"
 
-    private static let apiBaseURLEnvKey = "IWF_CAPTURE_API_BASE_URL"
+    private static let apiBaseURLEnvKey = "SKIPDRAMA_API_BASE_URL"
 
     // MARK: - Resolved Settings
 
@@ -98,7 +98,7 @@ struct Config: Sendable {
         return url
     }
 
-    /// Extracts a concise host string for UI display (e.g., `gtd.bakulin.de`).
+    /// Extracts a concise host string for UI display (e.g., `skipdrama.app`).
     static func displayHost(for urlString: String? = nil) -> String {
         let candidate = nonEmpty(urlString) ?? apiBaseURL
         if let url = URL(string: candidate), let host = url.host, !host.isEmpty {
@@ -107,7 +107,7 @@ struct Config: Sendable {
             }
             return host
         }
-        return URL(string: defaultAPIBaseURL)?.host ?? "gtd.bakulin.de"
+        return URL(string: defaultAPIBaseURL)?.host ?? "skipdrama.app"
     }
 
     private static func nonEmpty(_ raw: String?) -> String? {

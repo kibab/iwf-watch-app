@@ -27,10 +27,10 @@ struct CaptureResponse: Decodable, Sendable {
     let status: String
 }
 
-/// Streams raw `.m4a` voice recordings directly from disk to the Quick Capture API.
+/// Streams raw `.m4a` voice recordings directly from disk to the SkipDrama API.
 struct CaptureClient: Sendable {
     private static let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier ?? "com.iwf.quickcapture",
+        subsystem: Bundle.main.bundleIdentifier ?? "app.skipdrama",
         category: "CaptureClient"
     )
 

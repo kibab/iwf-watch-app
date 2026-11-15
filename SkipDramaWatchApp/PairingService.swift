@@ -80,7 +80,7 @@ enum PairingError: LocalizedError, Sendable, Equatable {
 /// Communicates with the RFC 8628-style Watch pairing endpoints (`/pair/start` and `/pair/poll`).
 struct PairingService: Sendable {
     private static let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier ?? "com.iwf.quickcapture",
+        subsystem: Bundle.main.bundleIdentifier ?? "app.skipdrama",
         category: "PairingService"
     )
 

@@ -30,7 +30,7 @@ final class AudioRecorder: NSObject {
     var onUnexpectedStop: (@MainActor () -> Void)?
 
     private static let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier ?? "com.iwf.quickcapture",
+        subsystem: Bundle.main.bundleIdentifier ?? "app.skipdrama",
         category: "AudioRecorder"
     )
 

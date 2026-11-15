@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA0000010000000000000001 /* QuickCaptureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000001 /* QuickCaptureApp.swift */; };
+		AA0000010000000000000001 /* SkipDramaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000001 /* SkipDramaApp.swift */; };
 		AA0000010000000000000002 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000002 /* Config.swift */; };
 		AA0000010000000000000003 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000003 /* AudioRecorder.swift */; };
 		AA0000010000000000000004 /* CaptureClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000004 /* CaptureClient.swift */; };
@@ -16,7 +16,7 @@
 		AA0000010000000000000007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000007 /* Assets.xcassets */; };
 		AA0000010000000000000008 /* CaptureWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000009 /* CaptureWidget.swift */; };
 		AA0000010000000000000009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000000A /* Assets.xcassets */; };
-		AA000001000000000000000A /* QuickCaptureWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BB0000020000000000000002 /* QuickCaptureWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA000001000000000000000A /* SkipDramaWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BB0000020000000000000002 /* SkipDramaWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AA000001000000000000000B /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000000D /* KeychainTokenStore.swift */; };
 		AA000001000000000000000C /* PairingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000000E /* PairingService.swift */; };
 		AA000001000000000000000D /* PairingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000000F /* PairingViewModel.swift */; };
@@ -24,7 +24,7 @@
 		AA000001000000000000000F /* PairingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000011 /* PairingView.swift */; };
 		AA0000010000000000000010 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000012 /* SettingsView.swift */; };
 		AA0000010000000000000011 /* QRCodeGenerator in Frameworks */ = {isa = PBXBuildFile; productRef = 990000010000000000000001 /* QRCodeGenerator */; };
-		AA0000010000000000000012 /* QuickCaptureWatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BB0000020000000000000001 /* QuickCaptureWatchApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA0000010000000000000012 /* SkipDramaWatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BB0000020000000000000001 /* SkipDramaWatchApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,14 +33,14 @@
 			containerPortal = EE0000010000000000000001 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DD0000010000000000000002;
-			remoteInfo = QuickCaptureWidgetExtension;
+			remoteInfo = SkipDramaWidgetExtension;
 		};
 		CC0000010000000000000002 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EE0000010000000000000001 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DD0000010000000000000001;
-			remoteInfo = QuickCaptureWatchApp;
+			remoteInfo = SkipDramaWatchApp;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -51,7 +51,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				AA000001000000000000000A /* QuickCaptureWidgetExtension.appex in Embed Foundation Extensions */,
+				AA000001000000000000000A /* SkipDramaWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,7 +62,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				AA0000010000000000000012 /* QuickCaptureWatchApp.app in Embed Watch Content */,
+				AA0000010000000000000012 /* SkipDramaWatchApp.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,7 +70,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BB0000010000000000000001 /* QuickCaptureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCaptureApp.swift; sourceTree = "<group>"; };
+		BB0000010000000000000001 /* SkipDramaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipDramaApp.swift; sourceTree = "<group>"; };
 		BB0000010000000000000002 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		BB0000010000000000000003 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		BB0000010000000000000004 /* CaptureClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureClient.swift; sourceTree = "<group>"; };
@@ -88,9 +88,9 @@
 		BB0000010000000000000010 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		BB0000010000000000000011 /* PairingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingView.swift; sourceTree = "<group>"; };
 		BB0000010000000000000012 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		BB0000020000000000000001 /* QuickCaptureWatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickCaptureWatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB0000020000000000000002 /* QuickCaptureWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QuickCaptureWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB0000020000000000000003 /* QuickCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB0000020000000000000001 /* SkipDramaWatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkipDramaWatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB0000020000000000000002 /* SkipDramaWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SkipDramaWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB0000020000000000000003 /* SkipDrama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkipDrama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,17 +115,17 @@
 		220000010000000000000001 = {
 			isa = PBXGroup;
 			children = (
-				220000010000000000000002 /* QuickCaptureWatchApp */,
-				220000010000000000000003 /* QuickCaptureWidgetExtension */,
+				220000010000000000000002 /* SkipDramaWatchApp */,
+				220000010000000000000003 /* SkipDramaWidgetExtension */,
 				BB000001000000000000000C /* README.md */,
 				220000010000000000000004 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		220000010000000000000002 /* QuickCaptureWatchApp */ = {
+		220000010000000000000002 /* SkipDramaWatchApp */ = {
 			isa = PBXGroup;
 			children = (
-				BB0000010000000000000001 /* QuickCaptureApp.swift */,
+				BB0000010000000000000001 /* SkipDramaApp.swift */,
 				BB0000010000000000000002 /* Config.swift */,
 				BB0000010000000000000003 /* AudioRecorder.swift */,
 				BB0000010000000000000004 /* CaptureClient.swift */,
@@ -140,25 +140,25 @@
 				BB0000010000000000000007 /* Assets.xcassets */,
 				BB0000010000000000000008 /* Info.plist */,
 			);
-			path = QuickCaptureWatchApp;
+			path = SkipDramaWatchApp;
 			sourceTree = "<group>";
 		};
-		220000010000000000000003 /* QuickCaptureWidgetExtension */ = {
+		220000010000000000000003 /* SkipDramaWidgetExtension */ = {
 			isa = PBXGroup;
 			children = (
 				BB0000010000000000000009 /* CaptureWidget.swift */,
 				BB000001000000000000000A /* Assets.xcassets */,
 				BB000001000000000000000B /* Info.plist */,
 			);
-			path = QuickCaptureWidgetExtension;
+			path = SkipDramaWidgetExtension;
 			sourceTree = "<group>";
 		};
 		220000010000000000000004 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BB0000020000000000000001 /* QuickCaptureWatchApp.app */,
-				BB0000020000000000000002 /* QuickCaptureWidgetExtension.appex */,
-				BB0000020000000000000003 /* QuickCapture.app */,
+				BB0000020000000000000001 /* SkipDramaWatchApp.app */,
+				BB0000020000000000000002 /* SkipDramaWidgetExtension.appex */,
+				BB0000020000000000000003 /* SkipDrama.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -166,9 +166,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DD0000010000000000000001 /* QuickCaptureWatchApp */ = {
+		DD0000010000000000000001 /* SkipDramaWatchApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 330000010000000000000002 /* Build configuration list for PBXNativeTarget "QuickCaptureWatchApp" */;
+			buildConfigurationList = 330000010000000000000002 /* Build configuration list for PBXNativeTarget "SkipDramaWatchApp" */;
 			buildPhases = (
 				440000010000000000000001 /* Sources */,
 				110000010000000000000001 /* Frameworks */,
@@ -180,17 +180,17 @@
 			dependencies = (
 				660000010000000000000001 /* PBXTargetDependency */,
 			);
-			name = QuickCaptureWatchApp;
+			name = SkipDramaWatchApp;
 			packageProductDependencies = (
 				990000010000000000000001 /* QRCodeGenerator */,
 			);
-			productName = QuickCaptureWatchApp;
-			productReference = BB0000020000000000000001 /* QuickCaptureWatchApp.app */;
+			productName = SkipDramaWatchApp;
+			productReference = BB0000020000000000000001 /* SkipDramaWatchApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DD0000010000000000000002 /* QuickCaptureWidgetExtension */ = {
+		DD0000010000000000000002 /* SkipDramaWidgetExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 330000010000000000000003 /* Build configuration list for PBXNativeTarget "QuickCaptureWidgetExtension" */;
+			buildConfigurationList = 330000010000000000000003 /* Build configuration list for PBXNativeTarget "SkipDramaWidgetExtension" */;
 			buildPhases = (
 				440000010000000000000002 /* Sources */,
 				110000010000000000000002 /* Frameworks */,
@@ -200,14 +200,14 @@
 			);
 			dependencies = (
 			);
-			name = QuickCaptureWidgetExtension;
-			productName = QuickCaptureWidgetExtension;
-			productReference = BB0000020000000000000002 /* QuickCaptureWidgetExtension.appex */;
+			name = SkipDramaWidgetExtension;
+			productName = SkipDramaWidgetExtension;
+			productReference = BB0000020000000000000002 /* SkipDramaWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		DD0000010000000000000003 /* QuickCapture */ = {
+		DD0000010000000000000003 /* SkipDrama */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 330000010000000000000004 /* Build configuration list for PBXNativeTarget "QuickCapture" */;
+			buildConfigurationList = 330000010000000000000004 /* Build configuration list for PBXNativeTarget "SkipDrama" */;
 			buildPhases = (
 				550000010000000000000003 /* Resources */,
 				550000010000000000000004 /* Generate Stub Icons */,
@@ -218,9 +218,9 @@
 			dependencies = (
 				660000010000000000000002 /* PBXTargetDependency */,
 			);
-			name = QuickCapture;
-			productName = QuickCapture;
-			productReference = BB0000020000000000000003 /* QuickCapture.app */;
+			name = SkipDrama;
+			productName = SkipDrama;
+			productReference = BB0000020000000000000003 /* SkipDrama.app */;
 			productType = "com.apple.product-type.application.watchapp2-container";
 		};
 /* End PBXNativeTarget section */
@@ -244,7 +244,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 330000010000000000000001 /* Build configuration list for PBXProject "QuickCapture" */;
+			buildConfigurationList = 330000010000000000000001 /* Build configuration list for PBXProject "SkipDrama" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -260,9 +260,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DD0000010000000000000003 /* QuickCapture */,
-				DD0000010000000000000001 /* QuickCaptureWatchApp */,
-				DD0000010000000000000002 /* QuickCaptureWidgetExtension */,
+				DD0000010000000000000003 /* SkipDrama */,
+				DD0000010000000000000001 /* SkipDramaWatchApp */,
+				DD0000010000000000000002 /* SkipDramaWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -323,7 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA0000010000000000000001 /* QuickCaptureApp.swift in Sources */,
+				AA0000010000000000000001 /* SkipDramaApp.swift in Sources */,
 				AA0000010000000000000002 /* Config.swift in Sources */,
 				AA0000010000000000000003 /* AudioRecorder.swift in Sources */,
 				AA0000010000000000000004 /* CaptureClient.swift in Sources */,
@@ -351,12 +351,12 @@
 /* Begin PBXTargetDependency section */
 		660000010000000000000001 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DD0000010000000000000002 /* QuickCaptureWidgetExtension */;
+			target = DD0000010000000000000002 /* SkipDramaWidgetExtension */;
 			targetProxy = CC0000010000000000000001 /* PBXContainerItemProxy */;
 		};
 		660000010000000000000002 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DD0000010000000000000001 /* QuickCaptureWatchApp */;
+			target = DD0000010000000000000001 /* SkipDramaWatchApp */;
 			targetProxy = CC0000010000000000000002 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -498,10 +498,10 @@
 				DEVELOPMENT_TEAM = S683DYH2T8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = QuickCaptureWatchApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Quick Capture";
+				INFOPLIST_FILE = SkipDramaWatchApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SkipDrama;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Record voice tasks for quick capture";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Record voice tasks for SkipDrama";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKApplication = YES;
 				INFOPLIST_KEY_WKWatchOnly = YES;
@@ -510,7 +510,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iwf.quickcapture.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.skipdrama.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -533,10 +533,10 @@
 				DEVELOPMENT_TEAM = S683DYH2T8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = QuickCaptureWatchApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Quick Capture";
+				INFOPLIST_FILE = SkipDramaWatchApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SkipDrama;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Record voice tasks for quick capture";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Record voice tasks for SkipDrama";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKApplication = YES;
 				INFOPLIST_KEY_WKWatchOnly = YES;
@@ -545,7 +545,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iwf.quickcapture.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.skipdrama.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -566,8 +566,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = QuickCaptureWidgetExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Quick Capture";
+				INFOPLIST_FILE = SkipDramaWidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SkipDrama;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -575,7 +575,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iwf.quickcapture.watchkitapp.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = app.skipdrama.watchkitapp.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -595,8 +595,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = QuickCaptureWidgetExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Quick Capture";
+				INFOPLIST_FILE = SkipDramaWidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SkipDrama;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -604,7 +604,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iwf.quickcapture.watchkitapp.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = app.skipdrama.watchkitapp.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -623,12 +623,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S683DYH2T8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "QuickCaptureWatchApp/WatchContainer-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Quick Capture";
+				INFOPLIST_FILE = "SkipDramaWatchApp/WatchContainer-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = SkipDrama;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iwf.quickcapture;
+				PRODUCT_BUNDLE_IDENTIFIER = app.skipdrama;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
@@ -643,12 +643,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S683DYH2T8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "QuickCaptureWatchApp/WatchContainer-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Quick Capture";
+				INFOPLIST_FILE = "SkipDramaWatchApp/WatchContainer-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = SkipDrama;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iwf.quickcapture;
+				PRODUCT_BUNDLE_IDENTIFIER = app.skipdrama;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
@@ -658,7 +658,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		330000010000000000000001 /* Build configuration list for PBXProject "QuickCapture" */ = {
+		330000010000000000000001 /* Build configuration list for PBXProject "SkipDrama" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				770000010000000000000001 /* Debug */,
@@ -667,7 +667,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		330000010000000000000002 /* Build configuration list for PBXNativeTarget "QuickCaptureWatchApp" */ = {
+		330000010000000000000002 /* Build configuration list for PBXNativeTarget "SkipDramaWatchApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				770000010000000000000003 /* Debug */,
@@ -676,7 +676,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		330000010000000000000003 /* Build configuration list for PBXNativeTarget "QuickCaptureWidgetExtension" */ = {
+		330000010000000000000003 /* Build configuration list for PBXNativeTarget "SkipDramaWidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				770000010000000000000005 /* Debug */,
@@ -685,7 +685,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		330000010000000000000004 /* Build configuration list for PBXNativeTarget "QuickCapture" */ = {
+		330000010000000000000004 /* Build configuration list for PBXNativeTarget "SkipDrama" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				770000010000000000000007 /* Debug */,
