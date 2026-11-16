@@ -278,6 +278,11 @@ final class PairingViewModel {
     }
 
     private func performSinglePoll(session: SessionDisplay) async -> Bool {
+        if tokenStore.hasToken {
+            refreshFromTokenStore()
+            return false
+        }
+
         if Date() >= session.expiresAt {
             markExpired()
             return false

@@ -203,8 +203,8 @@ struct IOSOnboardingView: View {
 
     private var watchSyncFootnote: some View {
         Label(
-            "Once connected on iPhone, SkipDrama automatically syncs your capture token to your paired Apple Watch.",
-            systemImage: "applewatch.radiowaves.left.and.right"
+            "Once connected, SkipDrama automatically syncs your capture token across your iPhone, iPad (via iCloud Keychain), and paired Apple Watch.",
+            systemImage: "icloud.and.arrow.up"
         )
         .font(.footnote)
         .foregroundStyle(.secondary)

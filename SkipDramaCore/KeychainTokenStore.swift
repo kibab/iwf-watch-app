@@ -18,10 +18,10 @@ enum KeychainError: LocalizedError, Sendable, Equatable {
 
 /// Securely stores the SkipDrama capture Bearer token (`iwf_cap_...`) and non-sensitive token metadata.
 ///
-/// Uses `kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly` inside the shared Keychain Access Group
-/// (`$(AppIdentifierPrefix)app.skipdrama.shared`) so the iOS app, Share Extension, Control/Widget
-/// extensions, and watchOS app can read the token even while the device is locked or running background
-/// App Intents.
+/// Stores items with `kSecAttrSynchronizable = true` and `kSecAttrAccessibleAfterFirstUnlock` inside
+/// the shared Keychain Access Group (`$(AppIdentifierPrefix)app.skipdrama.shared`) so tokens sync
+/// automatically across the user's iPhone and iPad via iCloud Keychain and remain accessible to
+/// extensions, background App Intents, and widgets on each device.
 struct KeychainTokenStore: Sendable {
     private static let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier ?? "app.skipdrama",
@@ -81,31 +81,48 @@ struct KeychainTokenStore: Sendable {
             deleteValue(account: Self.deviceNameAccount, service: service)
         }
 
-        // Mirror to shared App Group UserDefaults as a fallback for unsigned simulator builds / extensions.
-        let defaults = Config.sharedDefaults
-        defaults.set(trimmedToken, forKey: Self.sharedTokenDefaultsKey)
-        defaults.set(derivedLastChars, forKey: Self.sharedLastCharsDefaultsKey)
-        if let trimmedDeviceName {
-            defaults.set(trimmedDeviceName, forKey: Self.sharedDeviceNameDefaultsKey)
-        } else {
-            defaults.removeObject(forKey: Self.sharedDeviceNameDefaultsKey)
-        }
+        mirrorToSharedDefaults(
+            token: trimmedToken,
+            lastChars: derivedLastChars,
+            deviceName: trimmedDeviceName
+        )
     }
 
     func readToken() -> String? {
-        if let primary = nonEmpty(readValue(account: Self.tokenAccount, service: service)) {
-            return primary
+        if let synced = nonEmpty(readValue(account: Self.tokenAccount, service: service, synchronizable: kCFBooleanTrue)) {
+            let syncedLastChars = nonEmpty(readValue(account: Self.lastCharsAccount, service: service, synchronizable: kCFBooleanTrue))
+                ?? String(synced.suffix(4))
+            let syncedDeviceName = nonEmpty(readValue(account: Self.deviceNameAccount, service: service, synchronizable: kCFBooleanTrue))
+            mirrorToSharedDefaultsIfNeeded(token: synced, lastChars: syncedLastChars, deviceName: syncedDeviceName)
+            return synced
+        }
+
+        // Auto-migrate existing non-synchronizable token items into iCloud Keychain.
+        if let local = nonEmpty(readValue(account: Self.tokenAccount, service: service, synchronizable: kCFBooleanFalse)) {
+            let localLastChars = nonEmpty(readValue(account: Self.lastCharsAccount, service: service, synchronizable: kCFBooleanFalse))
+                ?? nonEmpty(Config.sharedDefaults.string(forKey: Self.sharedLastCharsDefaultsKey))
+            let localDeviceName = nonEmpty(readValue(account: Self.deviceNameAccount, service: service, synchronizable: kCFBooleanFalse))
+                ?? nonEmpty(Config.sharedDefaults.string(forKey: Self.sharedDeviceNameDefaultsKey))
+            try? saveToken(local, lastChars: localLastChars, deviceName: localDeviceName)
+            return local
         }
 
         if service == Self.defaultService,
-           let legacy = nonEmpty(readValue(account: Self.tokenAccount, service: Self.legacyWatchService)) {
-            let legacyLastChars = nonEmpty(readValue(account: Self.lastCharsAccount, service: Self.legacyWatchService))
-            let legacyName = nonEmpty(readValue(account: Self.deviceNameAccount, service: Self.legacyWatchService))
-            try? saveToken(legacy, lastChars: legacyLastChars, deviceName: legacyName)
+           let legacy = nonEmpty(readValue(account: Self.tokenAccount, service: Self.legacyWatchService, synchronizable: kSecAttrSynchronizableAny)) {
+            let legacyLastChars = nonEmpty(readValue(account: Self.lastCharsAccount, service: Self.legacyWatchService, synchronizable: kSecAttrSynchronizableAny))
+            let legacyName = nonEmpty(readValue(account: Self.deviceNameAccount, service: Self.legacyWatchService, synchronizable: kSecAttrSynchronizableAny))
+            if (try? saveToken(legacy, lastChars: legacyLastChars, deviceName: legacyName)) != nil {
+                deleteValue(account: Self.tokenAccount, service: Self.legacyWatchService)
+                deleteValue(account: Self.lastCharsAccount, service: Self.legacyWatchService)
+                deleteValue(account: Self.deviceNameAccount, service: Self.legacyWatchService)
+            }
             return legacy
         }
 
         if let mirrored = nonEmpty(Config.sharedDefaults.string(forKey: Self.sharedTokenDefaultsKey)) {
+            let mirroredLastChars = nonEmpty(Config.sharedDefaults.string(forKey: Self.sharedLastCharsDefaultsKey))
+            let mirroredDeviceName = nonEmpty(Config.sharedDefaults.string(forKey: Self.sharedDeviceNameDefaultsKey))
+            try? saveToken(mirrored, lastChars: mirroredLastChars, deviceName: mirroredDeviceName)
             return mirrored
         }
 
@@ -113,8 +130,11 @@ struct KeychainTokenStore: Sendable {
     }
 
     func readLastChars() -> String? {
-        if let stored = nonEmpty(readValue(account: Self.lastCharsAccount, service: service)) {
-            return stored
+        if let synced = nonEmpty(readValue(account: Self.lastCharsAccount, service: service, synchronizable: kCFBooleanTrue)) {
+            return synced
+        }
+        if let local = nonEmpty(readValue(account: Self.lastCharsAccount, service: service, synchronizable: kCFBooleanFalse)) {
+            return local
         }
         if let mirrored = nonEmpty(Config.sharedDefaults.string(forKey: Self.sharedLastCharsDefaultsKey)) {
             return mirrored
@@ -126,8 +146,11 @@ struct KeychainTokenStore: Sendable {
     }
 
     func readDeviceName() -> String? {
-        if let stored = nonEmpty(readValue(account: Self.deviceNameAccount, service: service)) {
-            return stored
+        if let synced = nonEmpty(readValue(account: Self.deviceNameAccount, service: service, synchronizable: kCFBooleanTrue)) {
+            return synced
+        }
+        if let local = nonEmpty(readValue(account: Self.deviceNameAccount, service: service, synchronizable: kCFBooleanFalse)) {
+            return local
         }
         return nonEmpty(Config.sharedDefaults.string(forKey: Self.sharedDeviceNameDefaultsKey))
     }
@@ -156,10 +179,40 @@ struct KeychainTokenStore: Sendable {
             throw KeychainError.invalidToken
         }
 
+        do {
+            try upsertItem(
+                data: data,
+                account: account,
+                service: service,
+                synchronizable: kCFBooleanTrue,
+                accessible: kSecAttrAccessibleAfterFirstUnlock
+            )
+            // Remove any stale local-only item so it does not shadow the iCloud-synced record.
+            deleteValue(account: account, service: service, synchronizable: kCFBooleanFalse)
+        } catch {
+            Self.logger.notice("Synchronizable Keychain write failed for \(account, privacy: .public), falling back to local Keychain: \(error.localizedDescription, privacy: .public)")
+            try upsertItem(
+                data: data,
+                account: account,
+                service: service,
+                synchronizable: kCFBooleanFalse,
+                accessible: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
+            )
+        }
+    }
+
+    private func upsertItem(
+        data: Data,
+        account: String,
+        service: String,
+        synchronizable: CFBoolean,
+        accessible: CFString
+    ) throws {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
-            kSecAttrAccount as String: account
+            kSecAttrAccount as String: account,
+            kSecAttrSynchronizable as String: synchronizable
         ]
 
         let existingStatus = SecItemCopyMatching(query as CFDictionary, nil)
@@ -167,7 +220,7 @@ struct KeychainTokenStore: Sendable {
         case errSecSuccess:
             let attributesToUpdate: [String: Any] = [
                 kSecValueData as String: data,
-                kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
+                kSecAttrAccessible as String: accessible
             ]
             let updateStatus = SecItemUpdate(query as CFDictionary, attributesToUpdate as CFDictionary)
             if updateStatus != errSecSuccess {
@@ -177,7 +230,7 @@ struct KeychainTokenStore: Sendable {
         case errSecItemNotFound:
             var addQuery = query
             addQuery[kSecValueData as String] = data
-            addQuery[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
+            addQuery[kSecAttrAccessible as String] = accessible
             let addStatus = SecItemAdd(addQuery as CFDictionary, nil)
             if addStatus != errSecSuccess {
                 Self.logger.error("SecItemAdd failed for account \(account, privacy: .public): \(addStatus)")
@@ -187,7 +240,7 @@ struct KeychainTokenStore: Sendable {
             SecItemDelete(query as CFDictionary)
             var addQuery = query
             addQuery[kSecValueData as String] = data
-            addQuery[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
+            addQuery[kSecAttrAccessible as String] = accessible
             let addStatus = SecItemAdd(addQuery as CFDictionary, nil)
             if addStatus != errSecSuccess {
                 Self.logger.error("SecItemAdd fallback failed for account \(account, privacy: .public): \(addStatus)")
@@ -196,11 +249,12 @@ struct KeychainTokenStore: Sendable {
         }
     }
 
-    private func readValue(account: String, service: String) -> String? {
+    private func readValue(account: String, service: String, synchronizable: CFTypeRef) -> String? {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
             kSecAttrAccount as String: account,
+            kSecAttrSynchronizable as String: synchronizable,
             kSecReturnData as String: true,
             kSecMatchLimit as String: kSecMatchLimitOne
         ]
@@ -218,15 +272,36 @@ struct KeychainTokenStore: Sendable {
         return string
     }
 
-    private func deleteValue(account: String, service: String) {
+    private func deleteValue(account: String, service: String, synchronizable: CFTypeRef = kSecAttrSynchronizableAny) {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
-            kSecAttrAccount as String: account
+            kSecAttrAccount as String: account,
+            kSecAttrSynchronizable as String: synchronizable
         ]
         let status = SecItemDelete(query as CFDictionary)
         if status != errSecSuccess && status != errSecItemNotFound {
             Self.logger.warning("SecItemDelete failed for account \(account, privacy: .public): \(status)")
+        }
+    }
+
+    private func mirrorToSharedDefaultsIfNeeded(token: String, lastChars: String, deviceName: String?) {
+        let defaults = Config.sharedDefaults
+        if defaults.string(forKey: Self.sharedTokenDefaultsKey) != token
+            || defaults.string(forKey: Self.sharedLastCharsDefaultsKey) != lastChars
+            || defaults.string(forKey: Self.sharedDeviceNameDefaultsKey) != deviceName {
+            mirrorToSharedDefaults(token: token, lastChars: lastChars, deviceName: deviceName)
+        }
+    }
+
+    private func mirrorToSharedDefaults(token: String, lastChars: String, deviceName: String?) {
+        let defaults = Config.sharedDefaults
+        defaults.set(token, forKey: Self.sharedTokenDefaultsKey)
+        defaults.set(lastChars, forKey: Self.sharedLastCharsDefaultsKey)
+        if let deviceName {
+            defaults.set(deviceName, forKey: Self.sharedDeviceNameDefaultsKey)
+        } else {
+            defaults.removeObject(forKey: Self.sharedDeviceNameDefaultsKey)
         }
     }
 
