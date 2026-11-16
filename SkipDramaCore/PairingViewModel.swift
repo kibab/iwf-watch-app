@@ -2,9 +2,8 @@ import Foundation
 import Observation
 import OSLog
 import SwiftUI
-import WatchKit
 
-/// Coordinates RFC 8628-style Watch pairing state, polling lifecycle, Keychain storage, and haptics.
+/// Coordinates RFC 8628-style device pairing, manual token entry, Keychain storage, and Watch sync.
 @MainActor
 @Observable
 final class PairingViewModel {
@@ -34,6 +33,9 @@ final class PairingViewModel {
     private(set) var tokenLastChars: String
     private(set) var phase: Phase = .loading
 
+    var manualTokenInput: String = ""
+    var manualTokenError: String?
+
     var onPaired: (@MainActor () -> Void)?
 
     private let pairingService: PairingService
@@ -60,6 +62,7 @@ final class PairingViewModel {
 
     func onAppear(isSceneActive: Bool) {
         isViewVisible = true
+        refreshFromTokenStore()
         guard !isPaired, isSceneActive else { return }
 
         switch phase {
@@ -115,8 +118,7 @@ final class PairingViewModel {
         deviceSecret = nil
         phase = .loading
 
-        let rawName = WKInterfaceDevice.current().name.trimmingCharacters(in: .whitespacesAndNewlines)
-        let deviceName = rawName.isEmpty ? "Apple Watch" : rawName
+        let deviceName = PlatformFeedback.defaultDeviceName
 
         startTask = Task { [weak self] in
             guard let self else { return }
@@ -160,14 +162,67 @@ final class PairingViewModel {
         }
     }
 
+    /// Pairs immediately using a manually pasted `iwf_cap_...` token from `/settings/integrations`.
+    @discardableResult
+    func pairWithManualToken(_ rawToken: String, deviceName: String? = nil) -> Bool {
+        let trimmed = rawToken.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard KeychainTokenStore.isValidManualToken(trimmed) else {
+            manualTokenError = "Enter a valid token starting with iwf_cap_"
+            PlatformFeedback.playFailure()
+            return false
+        }
+
+        do {
+            try tokenStore.saveToken(
+                trimmed,
+                lastChars: String(trimmed.suffix(4)),
+                deviceName: deviceName ?? PlatformFeedback.defaultDeviceName
+            )
+        } catch {
+            manualTokenError = error.localizedDescription
+            PlatformFeedback.playFailure()
+            return false
+        }
+
+        manualTokenError = nil
+        manualTokenInput = ""
+        deviceSecret = nil
+        cancelBackgroundTasks()
+        tokenLastChars = tokenStore.readLastChars() ?? String(trimmed.suffix(4))
+        isPaired = true
+        PlatformFeedback.playSuccess()
+        WatchSyncManager.shared.pushCurrentStateToWatch()
+        onPaired?()
+        return true
+    }
+
+    /// Refreshes pairing state after Keychain or WatchConnectivity updates.
+    func refreshFromTokenStore() {
+        let currentlyHasToken = tokenStore.hasToken
+        let latestLastChars = tokenStore.readLastChars() ?? "••••"
+        let newlyPaired = !isPaired && currentlyHasToken
+
+        tokenLastChars = latestLastChars
+        isPaired = currentlyHasToken
+
+        if newlyPaired {
+            deviceSecret = nil
+            cancelBackgroundTasks()
+            PlatformFeedback.playSuccess()
+            onPaired?()
+        }
+    }
+
     /// Clears the Keychain token and returns to the pairing flow.
     func unpair() {
         cancelBackgroundTasks()
         deviceSecret = nil
+        manualTokenError = nil
         tokenStore.deleteToken()
         tokenLastChars = "••••"
         isPaired = false
         phase = .loading
+        WatchSyncManager.shared.pushUnpairNoticeIfNeeded()
         if isViewVisible {
             requestNewCode()
         }
@@ -185,6 +240,7 @@ final class PairingViewModel {
 
     /// Refreshes pairing state after changing backend URL in Settings.
     func handleServerURLChanged() {
+        WatchSyncManager.shared.pushCurrentStateToWatch()
         guard !isPaired else { return }
         requestNewCode()
     }
@@ -253,7 +309,8 @@ final class PairingViewModel {
                 self.cancelBackgroundTasks()
                 self.tokenLastChars = self.tokenStore.readLastChars() ?? lastChars ?? String(token.suffix(4))
                 self.isPaired = true
-                WKInterfaceDevice.current().play(.success)
+                PlatformFeedback.playSuccess()
+                WatchSyncManager.shared.pushCurrentStateToWatch()
                 self.onPaired?()
                 return false
             }
@@ -309,4 +366,3 @@ final class PairingViewModel {
         expiryTask = nil
     }
 }
-

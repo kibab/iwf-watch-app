@@ -1,8 +1,10 @@
 import CoreGraphics
-import QRCodeGenerator
 import SwiftUI
 
-/// Renders a high-contrast QR code using pure Swift (`QRCodeGenerator`) and `CoreGraphics` (watchOS-safe, no `CoreImage`).
+#if canImport(QRCodeGenerator)
+import QRCodeGenerator
+
+/// Renders a high-contrast QR code using pure Swift (`QRCodeGenerator`) and `CoreGraphics` (watchOS & iOS safe).
 struct QRCodeView: View {
     let urlString: String
     var quietZoneModules: Int = 4
@@ -65,9 +67,50 @@ struct QRCodeView: View {
         }
     }
 }
+#elseif canImport(CoreImage)
+import CoreImage.CIFilterBuiltins
+
+/// Renders a high-contrast QR code using `CoreImage` (`CIQRCodeGenerator`).
+struct QRCodeView: View {
+    let urlString: String
+    var quietZoneModules: Int = 4
+
+    var body: some View {
+        Group {
+            if let qrImage = Self.makeCGImage(for: urlString) {
+                Image(decorative: qrImage, scale: 1.0)
+                    .interpolation(.none)
+                    .resizable()
+                    .scaledToFit()
+            } else {
+                Image(systemName: "qrcode")
+                    .font(.largeTitle)
+                    .foregroundStyle(.black)
+            }
+        }
+        .padding(6)
+        .background(
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .fill(Color.white)
+        )
+        .accessibilityLabel("Pairing QR Code")
+    }
+
+    private static func makeCGImage(for text: String) -> CGImage? {
+        guard let data = text.data(using: .utf8),
+              let filter = CIFilter(name: "CIQRCodeGenerator") else {
+            return nil
+        }
+        filter.setValue(data, forKey: "inputMessage")
+        filter.setValue("M", forKey: "inputCorrectionLevel")
+        guard let outputImage = filter.outputImage else { return nil }
+        let context = CIContext()
+        return context.createCGImage(outputImage, from: outputImage.extent)
+    }
+}
+#endif
 
 #Preview {
     QRCodeView(urlString: "https://skipdrama.app/settings/integrations?pair_watch=482915")
         .frame(width: 130, height: 130)
 }
-

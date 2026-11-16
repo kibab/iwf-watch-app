@@ -21,8 +21,9 @@
 	<string>Record voice tasks for SkipDrama</string>
 	<key>WKApplication</key>
 	<true/>
-	<key>WKWatchOnly</key>
+	<key>WKCompanionAppBundleIdentifier</key>
+	<string>app.skipdrama</string>
+	<key>WKRunsIndependentlyOfCompanionApp</key>
 	<true/>
 </dict>
 </plist>
-

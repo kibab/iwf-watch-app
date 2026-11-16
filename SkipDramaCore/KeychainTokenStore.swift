@@ -16,26 +16,42 @@ enum KeychainError: LocalizedError, Sendable, Equatable {
     }
 }
 
-/// Securely stores the Watch capture Bearer token and non-sensitive token metadata in the Keychain.
+/// Securely stores the SkipDrama capture Bearer token (`iwf_cap_...`) and non-sensitive token metadata.
 ///
-/// Uses `kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly` so background `URLSession` uploads,
-/// Smart Stack widgets/complications, and Action Button quick launches can read the token even
-/// when the Apple Watch screen dims or locks.
+/// Uses `kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly` inside the shared Keychain Access Group
+/// (`$(AppIdentifierPrefix)app.skipdrama.shared`) so the iOS app, Share Extension, Control/Widget
+/// extensions, and watchOS app can read the token even while the device is locked or running background
+/// App Intents.
 struct KeychainTokenStore: Sendable {
     private static let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier ?? "app.skipdrama",
         category: "KeychainTokenStore"
     )
 
-    private static let defaultService = "app.skipdrama.watchkitapp.token"
+    static let defaultService = "app.skipdrama.shared.token"
+    private static let legacyWatchService = "app.skipdrama.watchkitapp.token"
+
     private static let tokenAccount = "capture_token"
     private static let lastCharsAccount = "capture_token_last4"
     private static let deviceNameAccount = "capture_token_name"
+
+    private static let sharedTokenDefaultsKey = "app.skipdrama.sharedMirror.token"
+    private static let sharedLastCharsDefaultsKey = "app.skipdrama.sharedMirror.last4"
+    private static let sharedDeviceNameDefaultsKey = "app.skipdrama.sharedMirror.deviceName"
 
     private let service: String
 
     init(service: String = KeychainTokenStore.defaultService) {
         self.service = service
+    }
+
+    static func isValidTokenFormat(_ raw: String) -> Bool {
+        !raw.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+    static func isValidManualToken(_ raw: String) -> Bool {
+        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        return trimmed.hasPrefix("iwf_cap_") && trimmed.count > 8
     }
 
     var hasToken: Bool {
@@ -49,29 +65,59 @@ struct KeychainTokenStore: Sendable {
             throw KeychainError.invalidToken
         }
 
-        try upsert(value: trimmedToken, account: Self.tokenAccount)
+        try upsert(value: trimmedToken, account: Self.tokenAccount, service: service)
 
         let derivedLastChars = nonEmpty(lastChars) ?? String(trimmedToken.suffix(4))
         if !derivedLastChars.isEmpty {
-            try upsert(value: derivedLastChars, account: Self.lastCharsAccount)
+            try upsert(value: derivedLastChars, account: Self.lastCharsAccount, service: service)
         } else {
-            deleteValue(account: Self.lastCharsAccount)
+            deleteValue(account: Self.lastCharsAccount, service: service)
         }
 
-        if let deviceName = nonEmpty(deviceName) {
-            try upsert(value: deviceName, account: Self.deviceNameAccount)
+        let trimmedDeviceName = nonEmpty(deviceName)
+        if let trimmedDeviceName {
+            try upsert(value: trimmedDeviceName, account: Self.deviceNameAccount, service: service)
         } else {
-            deleteValue(account: Self.deviceNameAccount)
+            deleteValue(account: Self.deviceNameAccount, service: service)
+        }
+
+        // Mirror to shared App Group UserDefaults as a fallback for unsigned simulator builds / extensions.
+        let defaults = Config.sharedDefaults
+        defaults.set(trimmedToken, forKey: Self.sharedTokenDefaultsKey)
+        defaults.set(derivedLastChars, forKey: Self.sharedLastCharsDefaultsKey)
+        if let trimmedDeviceName {
+            defaults.set(trimmedDeviceName, forKey: Self.sharedDeviceNameDefaultsKey)
+        } else {
+            defaults.removeObject(forKey: Self.sharedDeviceNameDefaultsKey)
         }
     }
 
     func readToken() -> String? {
-        nonEmpty(readValue(account: Self.tokenAccount))
+        if let primary = nonEmpty(readValue(account: Self.tokenAccount, service: service)) {
+            return primary
+        }
+
+        if service == Self.defaultService,
+           let legacy = nonEmpty(readValue(account: Self.tokenAccount, service: Self.legacyWatchService)) {
+            let legacyLastChars = nonEmpty(readValue(account: Self.lastCharsAccount, service: Self.legacyWatchService))
+            let legacyName = nonEmpty(readValue(account: Self.deviceNameAccount, service: Self.legacyWatchService))
+            try? saveToken(legacy, lastChars: legacyLastChars, deviceName: legacyName)
+            return legacy
+        }
+
+        if let mirrored = nonEmpty(Config.sharedDefaults.string(forKey: Self.sharedTokenDefaultsKey)) {
+            return mirrored
+        }
+
+        return nil
     }
 
     func readLastChars() -> String? {
-        if let stored = nonEmpty(readValue(account: Self.lastCharsAccount)) {
+        if let stored = nonEmpty(readValue(account: Self.lastCharsAccount, service: service)) {
             return stored
+        }
+        if let mirrored = nonEmpty(Config.sharedDefaults.string(forKey: Self.sharedLastCharsDefaultsKey)) {
+            return mirrored
         }
         if let token = readToken() {
             return String(token.suffix(4))
@@ -80,18 +126,32 @@ struct KeychainTokenStore: Sendable {
     }
 
     func readDeviceName() -> String? {
-        nonEmpty(readValue(account: Self.deviceNameAccount))
+        if let stored = nonEmpty(readValue(account: Self.deviceNameAccount, service: service)) {
+            return stored
+        }
+        return nonEmpty(Config.sharedDefaults.string(forKey: Self.sharedDeviceNameDefaultsKey))
     }
 
     func deleteToken() {
-        deleteValue(account: Self.tokenAccount)
-        deleteValue(account: Self.lastCharsAccount)
-        deleteValue(account: Self.deviceNameAccount)
+        deleteValue(account: Self.tokenAccount, service: service)
+        deleteValue(account: Self.lastCharsAccount, service: service)
+        deleteValue(account: Self.deviceNameAccount, service: service)
+
+        if service == Self.defaultService {
+            deleteValue(account: Self.tokenAccount, service: Self.legacyWatchService)
+            deleteValue(account: Self.lastCharsAccount, service: Self.legacyWatchService)
+            deleteValue(account: Self.deviceNameAccount, service: Self.legacyWatchService)
+        }
+
+        let defaults = Config.sharedDefaults
+        defaults.removeObject(forKey: Self.sharedTokenDefaultsKey)
+        defaults.removeObject(forKey: Self.sharedLastCharsDefaultsKey)
+        defaults.removeObject(forKey: Self.sharedDeviceNameDefaultsKey)
     }
 
     // MARK: - Keychain Operations
 
-    private func upsert(value: String, account: String) throws {
+    private func upsert(value: String, account: String, service: String) throws {
         guard let data = value.data(using: .utf8) else {
             throw KeychainError.invalidToken
         }
@@ -124,7 +184,6 @@ struct KeychainTokenStore: Sendable {
                 throw KeychainError.unexpectedStatus(addStatus)
             }
         default:
-            // Fall back to delete-then-add if item metadata is in an unexpected state.
             SecItemDelete(query as CFDictionary)
             var addQuery = query
             addQuery[kSecValueData as String] = data
@@ -137,7 +196,7 @@ struct KeychainTokenStore: Sendable {
         }
     }
 
-    private func readValue(account: String) -> String? {
+    private func readValue(account: String, service: String) -> String? {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
@@ -159,7 +218,7 @@ struct KeychainTokenStore: Sendable {
         return string
     }
 
-    private func deleteValue(account: String) {
+    private func deleteValue(account: String, service: String) {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
@@ -179,4 +238,3 @@ struct KeychainTokenStore: Sendable {
         return trimmed
     }
 }
-

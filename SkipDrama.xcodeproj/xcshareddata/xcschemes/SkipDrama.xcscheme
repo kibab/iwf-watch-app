@@ -8,16 +8,44 @@
       buildArchitectures = "Automatic">
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "NO"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
             buildForArchiving = "YES"
-            buildForAnalyzing = "NO">
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DD0000010000000000000003"
                BuildableName = "SkipDrama.app"
                BlueprintName = "SkipDrama"
+               ReferencedContainer = "container:SkipDrama.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DD0000010000000000000004"
+               BuildableName = "SkipDramaWidgets.appex"
+               BlueprintName = "SkipDramaWidgets"
+               ReferencedContainer = "container:SkipDrama.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DD0000010000000000000005"
+               BuildableName = "SkipDramaShare.appex"
+               BlueprintName = "SkipDramaShare"
                ReferencedContainer = "container:SkipDrama.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -72,9 +100,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DD0000010000000000000001"
-            BuildableName = "SkipDramaWatchApp.app"
-            BlueprintName = "SkipDramaWatchApp"
+            BlueprintIdentifier = "DD0000010000000000000003"
+            BuildableName = "SkipDrama.app"
+            BlueprintName = "SkipDrama"
             ReferencedContainer = "container:SkipDrama.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -89,9 +117,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DD0000010000000000000001"
-            BuildableName = "SkipDramaWatchApp.app"
-            BlueprintName = "SkipDramaWatchApp"
+            BlueprintIdentifier = "DD0000010000000000000003"
+            BuildableName = "SkipDrama.app"
+            BlueprintName = "SkipDrama"
             ReferencedContainer = "container:SkipDrama.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

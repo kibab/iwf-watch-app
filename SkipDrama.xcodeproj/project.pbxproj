@@ -8,23 +8,60 @@
 
 /* Begin PBXBuildFile section */
 		AA0000010000000000000001 /* SkipDramaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000001 /* SkipDramaApp.swift */; };
-		AA0000010000000000000002 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000002 /* Config.swift */; };
-		AA0000010000000000000003 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000003 /* AudioRecorder.swift */; };
-		AA0000010000000000000004 /* CaptureClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000004 /* CaptureClient.swift */; };
+		AA0000010000000000000002 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000020 /* Config.swift */; };
+		AA0000010000000000000003 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000024 /* AudioRecorder.swift */; };
+		AA0000010000000000000004 /* CaptureClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000022 /* CaptureClient.swift */; };
 		AA0000010000000000000005 /* RecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000005 /* RecordingViewModel.swift */; };
 		AA0000010000000000000006 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000006 /* ContentView.swift */; };
 		AA0000010000000000000007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000007 /* Assets.xcassets */; };
 		AA0000010000000000000008 /* CaptureWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000009 /* CaptureWidget.swift */; };
 		AA0000010000000000000009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000000A /* Assets.xcassets */; };
 		AA000001000000000000000A /* SkipDramaWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BB0000020000000000000002 /* SkipDramaWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		AA000001000000000000000B /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000000D /* KeychainTokenStore.swift */; };
-		AA000001000000000000000C /* PairingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000000E /* PairingService.swift */; };
-		AA000001000000000000000D /* PairingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001000000000000000F /* PairingViewModel.swift */; };
-		AA000001000000000000000E /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000010 /* QRCodeView.swift */; };
+		AA000001000000000000000B /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000021 /* KeychainTokenStore.swift */; };
+		AA000001000000000000000C /* PairingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000023 /* PairingService.swift */; };
+		AA000001000000000000000D /* PairingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000026 /* PairingViewModel.swift */; };
+		AA000001000000000000000E /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000029 /* QRCodeView.swift */; };
 		AA000001000000000000000F /* PairingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000011 /* PairingView.swift */; };
 		AA0000010000000000000010 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000012 /* SettingsView.swift */; };
 		AA0000010000000000000011 /* QRCodeGenerator in Frameworks */ = {isa = PBXBuildFile; productRef = 990000010000000000000001 /* QRCodeGenerator */; };
 		AA0000010000000000000012 /* SkipDramaWatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BB0000020000000000000001 /* SkipDramaWatchApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA0000010000000000000013 /* PlatformFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000025 /* PlatformFeedback.swift */; };
+		AA0000010000000000000014 /* WatchSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000027 /* WatchSyncManager.swift */; };
+		AA0000010000000000000015 /* CaptureHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000028 /* CaptureHistoryStore.swift */; };
+		AA0000010000000000000020 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000020 /* Config.swift */; };
+		AA0000010000000000000021 /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000021 /* KeychainTokenStore.swift */; };
+		AA0000010000000000000022 /* CaptureClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000022 /* CaptureClient.swift */; };
+		AA0000010000000000000023 /* PairingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000023 /* PairingService.swift */; };
+		AA0000010000000000000024 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000024 /* AudioRecorder.swift */; };
+		AA0000010000000000000025 /* PlatformFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000025 /* PlatformFeedback.swift */; };
+		AA0000010000000000000026 /* PairingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000026 /* PairingViewModel.swift */; };
+		AA0000010000000000000027 /* WatchSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000027 /* WatchSyncManager.swift */; };
+		AA0000010000000000000028 /* CaptureHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000028 /* CaptureHistoryStore.swift */; };
+		AA0000010000000000000029 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000029 /* QRCodeView.swift */; };
+		AA000001000000000000002A /* SkipDramaIOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000030 /* SkipDramaIOSApp.swift */; };
+		AA000001000000000000002B /* IOSRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000031 /* IOSRootView.swift */; };
+		AA000001000000000000002C /* IOSOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000032 /* IOSOnboardingView.swift */; };
+		AA000001000000000000002D /* IOSMainCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000033 /* IOSMainCaptureView.swift */; };
+		AA000001000000000000002E /* IOSSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000034 /* IOSSettingsView.swift */; };
+		AA000001000000000000002F /* IOSCaptureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000035 /* IOSCaptureViewModel.swift */; };
+		AA0000010000000000000030 /* SkipDramaIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000036 /* SkipDramaIntents.swift */; };
+		AA0000010000000000000031 /* SkipDramaShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000037 /* SkipDramaShortcuts.swift */; };
+		AA0000010000000000000032 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000038 /* Assets.xcassets */; };
+		AA0000010000000000000033 /* QRCodeGenerator in Frameworks */ = {isa = PBXBuildFile; productRef = 990000010000000000000002 /* QRCodeGenerator */; };
+		AA0000010000000000000034 /* SkipDramaWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BB0000020000000000000004 /* SkipDramaWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA0000010000000000000035 /* SkipDramaShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BB0000020000000000000005 /* SkipDramaShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA0000010000000000000040 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000020 /* Config.swift */; };
+		AA0000010000000000000041 /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000021 /* KeychainTokenStore.swift */; };
+		AA0000010000000000000042 /* CaptureClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000022 /* CaptureClient.swift */; };
+		AA0000010000000000000043 /* CaptureHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000028 /* CaptureHistoryStore.swift */; };
+		AA0000010000000000000044 /* SkipDramaIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000036 /* SkipDramaIntents.swift */; };
+		AA0000010000000000000045 /* SkipDramaWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000040 /* SkipDramaWidgets.swift */; };
+		AA0000010000000000000046 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000041 /* Assets.xcassets */; };
+		AA0000010000000000000050 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000020 /* Config.swift */; };
+		AA0000010000000000000051 /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000021 /* KeychainTokenStore.swift */; };
+		AA0000010000000000000052 /* CaptureClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000022 /* CaptureClient.swift */; };
+		AA0000010000000000000053 /* CaptureHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000028 /* CaptureHistoryStore.swift */; };
+		AA0000010000000000000054 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000010000000000000050 /* ShareViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +78,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = DD0000010000000000000001;
 			remoteInfo = SkipDramaWatchApp;
+		};
+		CC0000010000000000000003 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE0000010000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD0000010000000000000004;
+			remoteInfo = SkipDramaWidgets;
+		};
+		CC0000010000000000000004 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE0000010000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD0000010000000000000005;
+			remoteInfo = SkipDramaShare;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -67,13 +118,22 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FF0000010000000000000003 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AA0000010000000000000034 /* SkipDramaWidgets.appex in Embed Foundation Extensions */,
+				AA0000010000000000000035 /* SkipDramaShare.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		BB0000010000000000000001 /* SkipDramaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipDramaApp.swift; sourceTree = "<group>"; };
-		BB0000010000000000000002 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		BB0000010000000000000003 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
-		BB0000010000000000000004 /* CaptureClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureClient.swift; sourceTree = "<group>"; };
 		BB0000010000000000000005 /* RecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewModel.swift; sourceTree = "<group>"; };
 		BB0000010000000000000006 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BB0000010000000000000007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,15 +142,43 @@
 		BB000001000000000000000A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB000001000000000000000B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB000001000000000000000C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		BB000001000000000000000D /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
-		BB000001000000000000000E /* PairingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingService.swift; sourceTree = "<group>"; };
-		BB000001000000000000000F /* PairingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingViewModel.swift; sourceTree = "<group>"; };
-		BB0000010000000000000010 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		BB0000010000000000000011 /* PairingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingView.swift; sourceTree = "<group>"; };
 		BB0000010000000000000012 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BB0000010000000000000013 /* SkipDramaWatchApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SkipDramaWatchApp.entitlements; sourceTree = "<group>"; };
+		BB0000010000000000000014 /* SkipDramaWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SkipDramaWidgetExtension.entitlements; sourceTree = "<group>"; };
+		BB0000010000000000000020 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		BB0000010000000000000021 /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
+		BB0000010000000000000022 /* CaptureClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureClient.swift; sourceTree = "<group>"; };
+		BB0000010000000000000023 /* PairingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingService.swift; sourceTree = "<group>"; };
+		BB0000010000000000000024 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		BB0000010000000000000025 /* PlatformFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformFeedback.swift; sourceTree = "<group>"; };
+		BB0000010000000000000026 /* PairingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingViewModel.swift; sourceTree = "<group>"; };
+		BB0000010000000000000027 /* WatchSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSyncManager.swift; sourceTree = "<group>"; };
+		BB0000010000000000000028 /* CaptureHistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureHistoryStore.swift; sourceTree = "<group>"; };
+		BB0000010000000000000029 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
+		BB0000010000000000000030 /* SkipDramaIOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipDramaIOSApp.swift; sourceTree = "<group>"; };
+		BB0000010000000000000031 /* IOSRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSRootView.swift; sourceTree = "<group>"; };
+		BB0000010000000000000032 /* IOSOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSOnboardingView.swift; sourceTree = "<group>"; };
+		BB0000010000000000000033 /* IOSMainCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSMainCaptureView.swift; sourceTree = "<group>"; };
+		BB0000010000000000000034 /* IOSSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSSettingsView.swift; sourceTree = "<group>"; };
+		BB0000010000000000000035 /* IOSCaptureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSCaptureViewModel.swift; sourceTree = "<group>"; };
+		BB0000010000000000000036 /* SkipDramaIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipDramaIntents.swift; sourceTree = "<group>"; };
+		BB0000010000000000000037 /* SkipDramaShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipDramaShortcuts.swift; sourceTree = "<group>"; };
+		BB0000010000000000000038 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BB0000010000000000000039 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB000001000000000000003A /* SkipDrama.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SkipDrama.entitlements; sourceTree = "<group>"; };
+		BB0000010000000000000040 /* SkipDramaWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipDramaWidgets.swift; sourceTree = "<group>"; };
+		BB0000010000000000000041 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BB0000010000000000000042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB0000010000000000000043 /* SkipDramaWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SkipDramaWidgets.entitlements; sourceTree = "<group>"; };
+		BB0000010000000000000050 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		BB0000010000000000000051 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB0000010000000000000052 /* SkipDramaShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SkipDramaShare.entitlements; sourceTree = "<group>"; };
 		BB0000020000000000000001 /* SkipDramaWatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkipDramaWatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB0000020000000000000002 /* SkipDramaWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SkipDramaWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB0000020000000000000003 /* SkipDrama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkipDrama.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB0000020000000000000004 /* SkipDramaWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SkipDramaWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB0000020000000000000005 /* SkipDramaShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SkipDramaShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,12 +197,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		110000010000000000000003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA0000010000000000000033 /* QRCodeGenerator in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		110000010000000000000004 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		110000010000000000000005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		220000010000000000000001 = {
 			isa = PBXGroup;
 			children = (
+				220000010000000000000005 /* SkipDramaCore */,
+				220000010000000000000006 /* SkipDrama */,
+				220000010000000000000008 /* SkipDramaWidgets */,
+				220000010000000000000009 /* SkipDramaShare */,
 				220000010000000000000002 /* SkipDramaWatchApp */,
 				220000010000000000000003 /* SkipDramaWidgetExtension */,
 				BB000001000000000000000C /* README.md */,
@@ -126,19 +240,13 @@
 			isa = PBXGroup;
 			children = (
 				BB0000010000000000000001 /* SkipDramaApp.swift */,
-				BB0000010000000000000002 /* Config.swift */,
-				BB0000010000000000000003 /* AudioRecorder.swift */,
-				BB0000010000000000000004 /* CaptureClient.swift */,
 				BB0000010000000000000005 /* RecordingViewModel.swift */,
 				BB0000010000000000000006 /* ContentView.swift */,
-				BB000001000000000000000D /* KeychainTokenStore.swift */,
-				BB000001000000000000000E /* PairingService.swift */,
-				BB000001000000000000000F /* PairingViewModel.swift */,
-				BB0000010000000000000010 /* QRCodeView.swift */,
 				BB0000010000000000000011 /* PairingView.swift */,
 				BB0000010000000000000012 /* SettingsView.swift */,
 				BB0000010000000000000007 /* Assets.xcassets */,
 				BB0000010000000000000008 /* Info.plist */,
+				BB0000010000000000000013 /* SkipDramaWatchApp.entitlements */,
 			);
 			path = SkipDramaWatchApp;
 			sourceTree = "<group>";
@@ -149,6 +257,7 @@
 				BB0000010000000000000009 /* CaptureWidget.swift */,
 				BB000001000000000000000A /* Assets.xcassets */,
 				BB000001000000000000000B /* Info.plist */,
+				BB0000010000000000000014 /* SkipDramaWidgetExtension.entitlements */,
 			);
 			path = SkipDramaWidgetExtension;
 			sourceTree = "<group>";
@@ -159,8 +268,74 @@
 				BB0000020000000000000001 /* SkipDramaWatchApp.app */,
 				BB0000020000000000000002 /* SkipDramaWidgetExtension.appex */,
 				BB0000020000000000000003 /* SkipDrama.app */,
+				BB0000020000000000000004 /* SkipDramaWidgets.appex */,
+				BB0000020000000000000005 /* SkipDramaShare.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		220000010000000000000005 /* SkipDramaCore */ = {
+			isa = PBXGroup;
+			children = (
+				BB0000010000000000000020 /* Config.swift */,
+				BB0000010000000000000021 /* KeychainTokenStore.swift */,
+				BB0000010000000000000022 /* CaptureClient.swift */,
+				BB0000010000000000000023 /* PairingService.swift */,
+				BB0000010000000000000024 /* AudioRecorder.swift */,
+				BB0000010000000000000025 /* PlatformFeedback.swift */,
+				BB0000010000000000000026 /* PairingViewModel.swift */,
+				BB0000010000000000000027 /* WatchSyncManager.swift */,
+				BB0000010000000000000028 /* CaptureHistoryStore.swift */,
+				BB0000010000000000000029 /* QRCodeView.swift */,
+			);
+			path = SkipDramaCore;
+			sourceTree = "<group>";
+		};
+		220000010000000000000006 /* SkipDrama */ = {
+			isa = PBXGroup;
+			children = (
+				BB0000010000000000000030 /* SkipDramaIOSApp.swift */,
+				BB0000010000000000000031 /* IOSRootView.swift */,
+				BB0000010000000000000032 /* IOSOnboardingView.swift */,
+				BB0000010000000000000033 /* IOSMainCaptureView.swift */,
+				BB0000010000000000000034 /* IOSSettingsView.swift */,
+				BB0000010000000000000035 /* IOSCaptureViewModel.swift */,
+				220000010000000000000007 /* Intents */,
+				BB0000010000000000000038 /* Assets.xcassets */,
+				BB0000010000000000000039 /* Info.plist */,
+				BB000001000000000000003A /* SkipDrama.entitlements */,
+			);
+			path = SkipDrama;
+			sourceTree = "<group>";
+		};
+		220000010000000000000007 /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				BB0000010000000000000036 /* SkipDramaIntents.swift */,
+				BB0000010000000000000037 /* SkipDramaShortcuts.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
+		220000010000000000000008 /* SkipDramaWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				BB0000010000000000000040 /* SkipDramaWidgets.swift */,
+				BB0000010000000000000041 /* Assets.xcassets */,
+				BB0000010000000000000042 /* Info.plist */,
+				BB0000010000000000000043 /* SkipDramaWidgets.entitlements */,
+			);
+			path = SkipDramaWidgets;
+			sourceTree = "<group>";
+		};
+		220000010000000000000009 /* SkipDramaShare */ = {
+			isa = PBXGroup;
+			children = (
+				BB0000010000000000000050 /* ShareViewController.swift */,
+				BB0000010000000000000051 /* Info.plist */,
+				BB0000010000000000000052 /* SkipDramaShare.entitlements */,
+			);
+			path = SkipDramaShare;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,19 +384,60 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 330000010000000000000004 /* Build configuration list for PBXNativeTarget "SkipDrama" */;
 			buildPhases = (
+				440000010000000000000003 /* Sources */,
+				110000010000000000000003 /* Frameworks */,
 				550000010000000000000003 /* Resources */,
-				550000010000000000000004 /* Generate Stub Icons */,
+				FF0000010000000000000003 /* Embed Foundation Extensions */,
 				FF0000010000000000000002 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				660000010000000000000002 /* PBXTargetDependency */,
+				660000010000000000000003 /* PBXTargetDependency */,
+				660000010000000000000004 /* PBXTargetDependency */,
 			);
 			name = SkipDrama;
+			packageProductDependencies = (
+				990000010000000000000002 /* QRCodeGenerator */,
+			);
 			productName = SkipDrama;
 			productReference = BB0000020000000000000003 /* SkipDrama.app */;
-			productType = "com.apple.product-type.application.watchapp2-container";
+			productType = "com.apple.product-type.application";
+		};
+		DD0000010000000000000004 /* SkipDramaWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 330000010000000000000005 /* Build configuration list for PBXNativeTarget "SkipDramaWidgets" */;
+			buildPhases = (
+				440000010000000000000004 /* Sources */,
+				110000010000000000000004 /* Frameworks */,
+				550000010000000000000005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SkipDramaWidgets;
+			productName = SkipDramaWidgets;
+			productReference = BB0000020000000000000004 /* SkipDramaWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		DD0000010000000000000005 /* SkipDramaShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 330000010000000000000006 /* Build configuration list for PBXNativeTarget "SkipDramaShare" */;
+			buildPhases = (
+				440000010000000000000005 /* Sources */,
+				110000010000000000000005 /* Frameworks */,
+				550000010000000000000006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SkipDramaShare;
+			productName = SkipDramaShare;
+			productReference = BB0000020000000000000005 /* SkipDramaShare.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -240,6 +456,12 @@
 						CreatedOnToolsVersion = 16.0;
 					};
 					DD0000010000000000000003 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					DD0000010000000000000004 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					DD0000010000000000000005 = {
 						CreatedOnToolsVersion = 26.6;
 					};
 				};
@@ -261,6 +483,8 @@
 			projectRoot = "";
 			targets = (
 				DD0000010000000000000003 /* SkipDrama */,
+				DD0000010000000000000004 /* SkipDramaWidgets */,
+				DD0000010000000000000005 /* SkipDramaShare */,
 				DD0000010000000000000001 /* SkipDramaWatchApp */,
 				DD0000010000000000000002 /* SkipDramaWidgetExtension */,
 			);
@@ -288,35 +512,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0000010000000000000032 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		550000010000000000000005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA0000010000000000000046 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		550000010000000000000006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		550000010000000000000004 /* Generate Stub Icons */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(PLATFORM_DIR)/Library/Application Support/MessagesApplicationStub/MessagesApplicationStub.xcassets/MessagesApplicationStub.appiconset/1024.png",
-			);
-			name = "Generate Stub Icons";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/MessagesApplicationStub60x60@2x.png",
-				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/MessagesApplicationStub76x76@2x~ipad.png",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "STUB_ICON=\"$PLATFORM_DIR/Library/Application Support/MessagesApplicationStub/MessagesApplicationStub.xcassets/MessagesApplicationStub.appiconset/1024.png\"\nDEST=\"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nmkdir -p \"$DEST\"\n/usr/bin/sips -s format png -z 120 120 \"$STUB_ICON\" --out \"$DEST/MessagesApplicationStub60x60@2x.png\" >/dev/null\n/usr/bin/sips -s format png -z 152 152 \"$STUB_ICON\" --out \"$DEST/MessagesApplicationStub76x76@2x~ipad.png\" >/dev/null\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		440000010000000000000001 /* Sources */ = {
@@ -335,6 +550,9 @@
 				AA000001000000000000000E /* QRCodeView.swift in Sources */,
 				AA000001000000000000000F /* PairingView.swift in Sources */,
 				AA0000010000000000000010 /* SettingsView.swift in Sources */,
+				AA0000010000000000000013 /* PlatformFeedback.swift in Sources */,
+				AA0000010000000000000014 /* WatchSyncManager.swift in Sources */,
+				AA0000010000000000000015 /* CaptureHistoryStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +561,56 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA0000010000000000000008 /* CaptureWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		440000010000000000000003 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA0000010000000000000020 /* Config.swift in Sources */,
+				AA0000010000000000000021 /* KeychainTokenStore.swift in Sources */,
+				AA0000010000000000000022 /* CaptureClient.swift in Sources */,
+				AA0000010000000000000023 /* PairingService.swift in Sources */,
+				AA0000010000000000000024 /* AudioRecorder.swift in Sources */,
+				AA0000010000000000000025 /* PlatformFeedback.swift in Sources */,
+				AA0000010000000000000026 /* PairingViewModel.swift in Sources */,
+				AA0000010000000000000027 /* WatchSyncManager.swift in Sources */,
+				AA0000010000000000000028 /* CaptureHistoryStore.swift in Sources */,
+				AA0000010000000000000029 /* QRCodeView.swift in Sources */,
+				AA000001000000000000002A /* SkipDramaIOSApp.swift in Sources */,
+				AA000001000000000000002B /* IOSRootView.swift in Sources */,
+				AA000001000000000000002C /* IOSOnboardingView.swift in Sources */,
+				AA000001000000000000002D /* IOSMainCaptureView.swift in Sources */,
+				AA000001000000000000002E /* IOSSettingsView.swift in Sources */,
+				AA000001000000000000002F /* IOSCaptureViewModel.swift in Sources */,
+				AA0000010000000000000030 /* SkipDramaIntents.swift in Sources */,
+				AA0000010000000000000031 /* SkipDramaShortcuts.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		440000010000000000000004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA0000010000000000000040 /* Config.swift in Sources */,
+				AA0000010000000000000041 /* KeychainTokenStore.swift in Sources */,
+				AA0000010000000000000042 /* CaptureClient.swift in Sources */,
+				AA0000010000000000000043 /* CaptureHistoryStore.swift in Sources */,
+				AA0000010000000000000044 /* SkipDramaIntents.swift in Sources */,
+				AA0000010000000000000045 /* SkipDramaWidgets.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		440000010000000000000005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA0000010000000000000050 /* Config.swift in Sources */,
+				AA0000010000000000000051 /* KeychainTokenStore.swift in Sources */,
+				AA0000010000000000000052 /* CaptureClient.swift in Sources */,
+				AA0000010000000000000053 /* CaptureHistoryStore.swift in Sources */,
+				AA0000010000000000000054 /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +626,16 @@
 			isa = PBXTargetDependency;
 			target = DD0000010000000000000001 /* SkipDramaWatchApp */;
 			targetProxy = CC0000010000000000000002 /* PBXContainerItemProxy */;
+		};
+		660000010000000000000003 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD0000010000000000000004 /* SkipDramaWidgets */;
+			targetProxy = CC0000010000000000000003 /* PBXContainerItemProxy */;
+		};
+		660000010000000000000004 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD0000010000000000000005 /* SkipDramaShare */;
+			targetProxy = CC0000010000000000000004 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -415,6 +693,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -475,6 +754,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -492,6 +772,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SkipDramaWatchApp/SkipDramaWatchApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -504,7 +785,8 @@
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Record voice tasks for SkipDrama";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKApplication = YES;
-				INFOPLIST_KEY_WKWatchOnly = YES;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = app.skipdrama;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -515,6 +797,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -527,6 +810,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SkipDramaWatchApp/SkipDramaWatchApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -539,7 +823,8 @@
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Record voice tasks for SkipDrama";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKApplication = YES;
-				INFOPLIST_KEY_WKWatchOnly = YES;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = app.skipdrama;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -550,6 +835,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -563,8 +849,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = SkipDramaWidgetExtension/SkipDramaWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S683DYH2T8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SkipDramaWidgetExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SkipDrama;
@@ -579,6 +867,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -592,8 +881,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = SkipDramaWidgetExtension/SkipDramaWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S683DYH2T8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SkipDramaWidgetExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SkipDrama;
@@ -608,6 +899,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -618,40 +910,198 @@
 		770000010000000000000007 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SkipDrama/SkipDrama.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S683DYH2T8;
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "SkipDramaWatchApp/WatchContainer-Info.plist";
+				INFOPLIST_FILE = SkipDrama/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SkipDrama;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Record voice tasks for SkipDrama";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.skipdrama;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		770000010000000000000008 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SkipDrama/SkipDrama.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S683DYH2T8;
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "SkipDramaWatchApp/WatchContainer-Info.plist";
+				INFOPLIST_FILE = SkipDrama/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SkipDrama;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Record voice tasks for SkipDrama";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.skipdrama;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		770000010000000000000009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = SkipDramaWidgets/SkipDramaWidgets.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S683DYH2T8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SkipDramaWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SkipDrama;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.skipdrama.widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		77000001000000000000000A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = SkipDramaWidgets/SkipDramaWidgets.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S683DYH2T8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SkipDramaWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SkipDrama;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.skipdrama.widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		77000001000000000000000B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SkipDramaShare/SkipDramaShare.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S683DYH2T8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SkipDramaShare/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SkipDrama;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.skipdrama.share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		77000001000000000000000C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SkipDramaShare/SkipDramaShare.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S683DYH2T8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SkipDramaShare/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SkipDrama;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.skipdrama.share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -694,6 +1144,24 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		330000010000000000000005 /* Build configuration list for PBXNativeTarget "SkipDramaWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				770000010000000000000009 /* Debug */,
+				77000001000000000000000A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		330000010000000000000006 /* Build configuration list for PBXNativeTarget "SkipDramaShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77000001000000000000000B /* Debug */,
+				77000001000000000000000C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -709,6 +1177,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		990000010000000000000001 /* QRCodeGenerator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 880000010000000000000001 /* XCRemoteSwiftPackageReference "swift-qrcode-generator" */;
+			productName = QRCodeGenerator;
+		};
+		990000010000000000000002 /* QRCodeGenerator */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 880000010000000000000001 /* XCRemoteSwiftPackageReference "swift-qrcode-generator" */;
 			productName = QRCodeGenerator;

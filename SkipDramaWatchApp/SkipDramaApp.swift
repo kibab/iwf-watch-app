@@ -22,6 +22,15 @@ struct SkipDramaApp: App {
             }
         }
 
+        WatchSyncManager.shared.onTokenUpdatedFromPeer = { [weak pairing, weak recording] in
+            pairing?.refreshFromTokenStore()
+            guard let recording else { return }
+            Task { @MainActor in
+                await recording.resumePendingUploads()
+            }
+        }
+        WatchSyncManager.shared.activate()
+
         _pairingViewModel = State(initialValue: pairing)
         _recordingViewModel = State(initialValue: recording)
     }

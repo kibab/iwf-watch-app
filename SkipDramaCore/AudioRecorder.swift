@@ -2,7 +2,7 @@ import AVFoundation
 import Foundation
 import OSLog
 
-/// Errors raised while configuring the watchOS audio session or recording a memo.
+/// Errors raised while configuring the audio session or recording a memo.
 enum AudioRecorderError: LocalizedError, Sendable, Equatable {
     case permissionDenied
     case sessionConfigurationFailed(String)
@@ -23,10 +23,10 @@ enum AudioRecorderError: LocalizedError, Sendable, Equatable {
     }
 }
 
-/// Manages `AVAudioSession`, `AVAudioRecorder`, and the persistent `.m4a` upload queue on Apple Watch.
+/// Manages `AVAudioSession`, `AVAudioRecorder`, live audio metering, and the persistent `.m4a` upload queue.
 @MainActor
 final class AudioRecorder: NSObject {
-    /// Invoked if watchOS interrupts or halts an active recording unexpectedly.
+    /// Invoked if the OS interrupts or halts an active recording unexpectedly.
     var onUnexpectedStop: (@MainActor () -> Void)?
 
     private static let logger = Logger(
@@ -38,7 +38,7 @@ final class AudioRecorder: NSObject {
     private static let filePrefix = "memo-"
     private static let fileExtension = "m4a"
 
-    /// AAC-LC mono 44.1 kHz @ 64 kbps tuned for voice bandwidth and S6/S7 audio DSP.
+    /// AAC-LC mono 44.1 kHz @ 64 kbps tuned for voice bandwidth across iOS and watchOS.
     private static let recordingSettings: [String: Any] = [
         AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
         AVSampleRateKey: 44_100.0,
@@ -65,7 +65,7 @@ final class AudioRecorder: NSObject {
         }
     }
 
-    /// Requests microphone permission using watchOS 10+ `AVAudioApplication`.
+    /// Requests microphone permission using `AVAudioApplication`.
     func requestPermission() async -> Bool {
         await AVAudioApplication.requestRecordPermission()
     }
@@ -80,7 +80,15 @@ final class AudioRecorder: NSObject {
 
         let session = AVAudioSession.sharedInstance()
         do {
+            #if os(iOS)
+            try session.setCategory(
+                .playAndRecord,
+                mode: .default,
+                options: [.defaultToSpeaker, .allowBluetoothHFP]
+            )
+            #else
             try session.setCategory(.record, mode: .default)
+            #endif
             try session.setActive(true)
         } catch {
             Self.logger.error("Failed to configure AVAudioSession: \(error.localizedDescription, privacy: .public)")
@@ -104,6 +112,7 @@ final class AudioRecorder: NSObject {
         }
 
         audioRecorder.delegate = self
+        audioRecorder.isMeteringEnabled = true
 
         guard audioRecorder.prepareToRecord(), audioRecorder.record() else {
             audioRecorder.delegate = nil
@@ -115,6 +124,23 @@ final class AudioRecorder: NSObject {
 
         recorder = audioRecorder
         currentFileURL = fileURL
+    }
+
+    /// Returns normalized input power (`0.0...1.0`) for live waveform meters.
+    func currentNormalizedLevel() -> Float {
+        guard let activeRecorder = recorder, activeRecorder.isRecording else {
+            return 0
+        }
+        activeRecorder.updateMeters()
+        let powerDb = activeRecorder.averagePower(forChannel: 0)
+        let minDb: Float = -60.0
+        if powerDb <= minDb {
+            return 0
+        }
+        if powerDb >= 0 {
+            return 1
+        }
+        return max(0, min(1, (powerDb - minDb) / abs(minDb)))
     }
 
     /// Stops the active recording, deactivates the audio session, and returns the `.m4a` file URL if non-empty.
@@ -188,6 +214,13 @@ final class AudioRecorder: NSObject {
     // MARK: - Private Helpers
 
     private static func resolveQueueDirectoryURL() -> URL {
+        if let containerURL = FileManager.default.containerURL(
+            forSecurityApplicationGroupIdentifier: Config.appGroupIdentifier
+        ) {
+            let queueURL = containerURL.appendingPathComponent(queueDirectoryName, isDirectory: true)
+            try? FileManager.default.createDirectory(at: queueURL, withIntermediateDirectories: true)
+            return queueURL
+        }
         if let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
             let queueURL = appSupport.appendingPathComponent(queueDirectoryName, isDirectory: true)
             try? FileManager.default.createDirectory(at: queueURL, withIntermediateDirectories: true)
